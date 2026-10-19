@@ -1,0 +1,11 @@
+# Test descriptor for twister. Adjust the name and tags to the module.
+# twister's `-T` points at the folder that contains THIS file.
+tests:
+  unit.<MODULE>:
+    platform_allow:
+      - native_sim
+    tags:
+      - unit
+      - <MODULE>
+    # integration_platforms is optional; for a native_sim unit test this is enough.
+    harness: ztest

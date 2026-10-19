@@ -1,0 +1,16 @@
+{
+  "name": "claude-skills",
+  "owner": {
+    "name": "PedroGilo12"
+  },
+  "metadata": {
+    "description": "A personal collection of Claude Code skills."
+  },
+  "plugins": [
+    {
+      "name": "firmware-testing",
+      "source": "./plugins/firmware-testing",
+      "description": "Skills for embedded firmware testing (Zephyr, ESP-IDF)."
+    }
+  ]
+}

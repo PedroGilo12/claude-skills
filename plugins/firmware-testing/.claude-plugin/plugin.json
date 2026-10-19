@@ -1,0 +1,8 @@
+{
+  "name": "firmware-testing",
+  "version": "0.3.0",
+  "description": "Skills for embedded firmware testing (Zephyr, ESP-IDF).",
+  "author": {
+    "name": "PedroGilo12"
+  }
+}

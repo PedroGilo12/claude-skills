@@ -1,0 +1,45 @@
+# Mutantes comprovadamente equivalentes: nenhum input observável distingue o mutante do original.
+# Saem da conta do mutation score em QUALQUER suíte do mesmo alvo (referência e skill).
+# id = sha1("arquivo:linha:coluna:operador")[:10], como em benchmarks/results/*.json.
+# IDs só com dígitos vão entre aspas (senão o YAML os lê como número).
+# Só entra aqui com justificativa verificável no código. Na dúvida, NÃO é equivalente.
+
+net_buf:
+  55b95dd108: >-
+    buf.c:257 `uninit_count < buf_count` -> `<=`. Com uninit_count == buf_count nenhum buffer
+    saiu do pool, então a LIFO `free` está vazia (só recebe buffers devolvidos); o
+    k_lifo_get(K_NO_WAIT) extra retorna NULL e o fluxo segue pelo mesmo caminho uninit.
+  37f9fa76b5: >-
+    buf.c:621 (net_buf_linearize) `offset >= frag->len` -> `>`. Com offset == frag->len o
+    mutante fica no fragmento, copia MIN(len, 0) = 0 bytes, avança e zera offset: mesmo
+    dst e mesmo retorno.
+  e2bab0e2ee: >-
+    buf.c:628 (net_buf_linearize) `len > 0` -> `len >= 0`. len é size_t; as iterações extras
+    copiam MIN(0, ...) = 0 bytes até frag == NULL; `copied` não muda.
+  624c45ff02: >-
+    buf.c:708 (net_buf_data_match) `offset >= buf->len` -> `>`. Com offset == buf->len compara
+    MIN(len, 0) = 0 bytes, avança e zera offset: mesmo `compared`.
+  3b03279fd5: >-
+    buf.c:713 (net_buf_data_match) `len > 0` -> `len >= 0`. len é size_t; iterações extras
+    comparam 0 bytes até buf == NULL; `compared` não muda.
+
+esp_partition: {}
+
+onoff:
+  '8549411368': >-
+    onoff.c:304 (process_event) `int res = 0` -> 42. O valor inicial nunca é lido: dentro do
+    laço, `res = 0` (L336) vem antes de todo uso (L338-390), e não há uso de res fora do laço.
+  c200013a2c: >-
+    onoff.c:626 (onoff_sync_finalize) `srv->count < 0` -> `<= 0`. Com count == 0 o mutante
+    executa `srv->count = 0`, que não muda nada.
+
+log:
+  017bb2c536: >-
+    util.c:24 (esp_log_util_cvt) `pad > 0` -> `pad >= 0`. O do-while garante length >= 1; com
+    pad == 0 a segunda condição `pad > length` já é falsa, então o laço não roda nos dois casos.
+  afa8fbc218: >-
+    util.c:38 (esp_log_util_cvt) `orig_buf < buf` -> `<=`. Na igualdade (caractere do meio de
+    tamanho ímpar) o mutante troca o caractere com ele mesmo; o buffer final é idêntico.
+  8ea7fb72d7: >-
+    log_buffers.c:76 `buff_len > BYTES_PER_LINE ? BYTES_PER_LINE : buff_len` -> `>=`. Com
+    buff_len == BYTES_PER_LINE os dois ramos dão o mesmo valor.

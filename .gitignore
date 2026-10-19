@@ -1,0 +1,19 @@
+# Saídas de benchmark/evals do skill-creator (geráveis, podem conter código de terceiros)
+*-workspace/
+workspace/
+# Pacotes exportados
+*.skill
+# Saídas de build/teste dos firmwares de exemplo e da mutação
+twister-out*/
+build/
+coverage/
+*.gcda
+*.gcno
+tools/mutation/out/
+.venv/
+__pycache__/
+benchmarks/.targets/
+tools/mutation/.mull/
+
+# Notas locais de decisão (não versionar)
+DECISOES.md

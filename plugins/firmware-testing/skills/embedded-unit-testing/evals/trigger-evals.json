@@ -1,0 +1,202 @@
+[
+  {
+    "query": "gera os testes unitários do src/drivers/pwm_ctrl.c, quero cobrir as bordas de duty cycle",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "Preciso de uma suíte de testes unitários para app/src/battery_monitor.c e battery_monitor.h. O projeto é Zephyr.",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "cria unit test pro main/sensors/bme280_parser.c do meu projeto esp-idf",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "quero 95% de cobertura no modulo crc16.c, escreve os testes",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "testa essa função de saturação em fixed_point.c com partições e boundaries, sem precisar subir a placa",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "Write unit tests for firmware/lib/ring_queue.c, it's plain C for an STM32 project that already uses Unity",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "faz os testes de unidade da máquina de estados em src/fsm/door_lock.c, mockando o driver do motor",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "escreve testes ztest pro meu modulo subsys/telemetry/encoder.c",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "pode cobrir com testes o components/ota_helper/ota_helper.c? tem dependência de nvs e esp_http_client que precisa isolar",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "tenho os arquivos debounce.c e debounce.h aqui, gera os testes unitários deles",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "escreve um teste de integração que sobe o firmware no nrf52840dk e valida a comunicação BLE com o app",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "cria uma suíte Robot Framework pra validar o comando de reset do dispositivo na bancada",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "varre o firmware inteiro e cria testes para todos os módulos que ainda não têm",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "preenche os TODOs do tests/unit/test_sensor_filter.c que o gerador de scaffold já criou",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "corrige o bug da issue #42: o sensor_filter.c estoura o buffer quando a janela é zero",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "me explica o que esse teste test_net_buf_clone faz e por que ele chama net_buf_unref duas vezes",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "o teste test_ringbuf_wrap está falhando no CI depois do meu commit, descobre por quê e conserta",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "gera testes pytest para o script tools/flash_all.py que grava os firmwares",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "configura o GitHub Actions pra rodar o twister com cobertura a cada PR",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "escreve um teste HIL que injeta falha de alimentação durante a escrita na flash",
+    "should_trigger": false,
+    "lang": "pt"
+  },
+  {
+    "query": "write the unit tests for src/drivers/pwm_ctrl.c, I want to cover the duty cycle edges",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "I need a unit test suite for app/src/battery_monitor.c and battery_monitor.h. The project is Zephyr.",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "create unit tests for main/sensors/bme280_parser.c in my esp-idf project",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "I want 95% coverage on the crc16.c module, write the tests",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "test this saturation function in fixed_point.c with partitions and boundaries, without having to flash the board",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "Escreve testes unitários para firmware/lib/ring_queue.c, é C puro de um projeto STM32 que já usa Unity",
+    "should_trigger": true,
+    "lang": "pt"
+  },
+  {
+    "query": "write unit tests for the state machine in src/fsm/door_lock.c, mocking the motor driver",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "write ztest tests for my subsys/telemetry/encoder.c module",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "can you cover components/ota_helper/ota_helper.c with tests? it depends on nvs and esp_http_client, which need to be isolated",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "I have debounce.c and debounce.h here, generate their unit tests",
+    "should_trigger": true,
+    "lang": "en"
+  },
+  {
+    "query": "write an integration test that boots the firmware on the nrf52840dk and validates the BLE communication with the app",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "create a Robot Framework suite to validate the device reset command on the test bench",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "scan the whole firmware and create tests for every module that doesn't have them yet",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "fill in the TODOs in tests/unit/test_sensor_filter.c that the scaffold generator already created",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "fix the bug from issue #42: sensor_filter.c overflows the buffer when the window is zero",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "explain what the test_net_buf_clone test does and why it calls net_buf_unref twice",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "the test_ringbuf_wrap test is failing in CI after my commit, find out why and fix it",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "generate pytest tests for the tools/flash_all.py script that flashes the firmwares",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "set up GitHub Actions to run twister with coverage on every PR",
+    "should_trigger": false,
+    "lang": "en"
+  },
+  {
+    "query": "write a HIL test that injects a power failure while writing to flash",
+    "should_trigger": false,
+    "lang": "en"
+  }
+]

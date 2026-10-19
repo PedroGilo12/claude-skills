@@ -1,0 +1,1502 @@
+{
+ "target": "esp_partition",
+ "label": "iter1-with_skill-run3",
+ "kind": "host",
+ "partial_sources": false,
+ "suites": [
+  "components/esp_partition/host_test/partition_unit"
+ ],
+ "cmd": "make -C {suite} test",
+ "clean": "make -C {suite} clean",
+ "target_ref": "v5.4.2",
+ "target_sha": "f5c3654a1c2d2a01f7f67def7a0dc48e691f63c0",
+ "repo_commit": null,
+ "mull": "0.34.1",
+ "mutators": [
+  "cxx_all"
+ ],
+ "date": "2026-10-19",
+ "coverage": {
+  "components/esp_partition/partition.c": {
+   "line": [
+    252,
+    252
+   ],
+   "branch": [
+    156,
+    156
+   ],
+   "function": [
+    14,
+    14
+   ]
+  }
+ },
+ "mutation": {
+  "components/esp_partition/partition.c": {
+   "killed": 168,
+   "survived": 11,
+   "equivalent": 0,
+   "score": 93.9
+  }
+ },
+ "notes": {
+  "cmd_rc": [],
+  "excluded_binaries": []
+ },
+ "vs_ref": {
+  "per_file": {
+   "components/esp_partition/partition.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": true,
+     "branch>=min": true,
+     "branch=target": true,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": true
+   }
+  },
+  "pass": true
+ },
+ "mutants": [
+  {
+   "id": "5bfdc9e308",
+   "file": "components/esp_partition/partition.c",
+   "line": 82,
+   "column": 10,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "bd4405d7f7",
+   "file": "components/esp_partition/partition.c",
+   "line": 83,
+   "column": 10,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "02ab7893a4",
+   "file": "components/esp_partition/partition.c",
+   "line": 85,
+   "column": 23,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "cf86b7c7e7",
+   "file": "components/esp_partition/partition.c",
+   "line": 86,
+   "column": 21,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "077599cf98",
+   "file": "components/esp_partition/partition.c",
+   "line": 87,
+   "column": 26,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "d4a52268ac",
+   "file": "components/esp_partition/partition.c",
+   "line": 88,
+   "column": 26,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "d9863bbf3c",
+   "file": "components/esp_partition/partition.c",
+   "line": 89,
+   "column": 26,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "abe45c2584",
+   "file": "components/esp_partition/partition.c",
+   "line": 89,
+   "column": 64,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "86f32a06a9",
+   "file": "components/esp_partition/partition.c",
+   "line": 90,
+   "column": 26,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "363150d1ee",
+   "file": "components/esp_partition/partition.c",
+   "line": 90,
+   "column": 64,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "2ff65665b9",
+   "file": "components/esp_partition/partition.c",
+   "line": 93,
+   "column": 23,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "0f4d558636",
+   "file": "components/esp_partition/partition.c",
+   "line": 119,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a5ba663b3d",
+   "file": "components/esp_partition/partition.c",
+   "line": 122,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "538084563f",
+   "file": "components/esp_partition/partition.c",
+   "line": 123,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "46f147bafc",
+   "file": "components/esp_partition/partition.c",
+   "line": 123,
+   "column": 57,
+   "operator": "cxx_sub_to_add",
+   "status": "survived"
+  },
+  {
+   "id": "b1506fc415",
+   "file": "components/esp_partition/partition.c",
+   "line": 129,
+   "column": 15,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "2740887884",
+   "file": "components/esp_partition/partition.c",
+   "line": 129,
+   "column": 21,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "ab7394a869",
+   "file": "components/esp_partition/partition.c",
+   "line": 131,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "74ff78b06b",
+   "file": "components/esp_partition/partition.c",
+   "line": 134,
+   "column": 13,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "777817939f",
+   "file": "components/esp_partition/partition.c",
+   "line": 142,
+   "column": 52,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "8b68a9aa6b",
+   "file": "components/esp_partition/partition.c",
+   "line": 142,
+   "column": 52,
+   "operator": "cxx_lt_to_le",
+   "status": "survived"
+  },
+  {
+   "id": "579e328878",
+   "file": "components/esp_partition/partition.c",
+   "line": 149,
+   "column": 25,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "a2a6cf1f5a",
+   "file": "components/esp_partition/partition.c",
+   "line": 154,
+   "column": 25,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "44c548028b",
+   "file": "components/esp_partition/partition.c",
+   "line": 159,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "473ce20796",
+   "file": "components/esp_partition/partition.c",
+   "line": 164,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "4883961573",
+   "file": "components/esp_partition/partition.c",
+   "line": 165,
+   "column": 17,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "384903c391",
+   "file": "components/esp_partition/partition.c",
+   "line": 173,
+   "column": 28,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "70a2eeb30f",
+   "file": "components/esp_partition/partition.c",
+   "line": 174,
+   "column": 25,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "734892ee2e",
+   "file": "components/esp_partition/partition.c",
+   "line": 178,
+   "column": 31,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f292390383",
+   "file": "components/esp_partition/partition.c",
+   "line": 180,
+   "column": 25,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "d9391fe947",
+   "file": "components/esp_partition/partition.c",
+   "line": 181,
+   "column": 28,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "bef0097fc6",
+   "file": "components/esp_partition/partition.c",
+   "line": 182,
+   "column": 30,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "25759197e5",
+   "file": "components/esp_partition/partition.c",
+   "line": 182,
+   "column": 32,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "31bf955d81",
+   "file": "components/esp_partition/partition.c",
+   "line": 182,
+   "column": 67,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "cc204f7e63",
+   "file": "components/esp_partition/partition.c",
+   "line": 183,
+   "column": 29,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "b87c4d36b6",
+   "file": "components/esp_partition/partition.c",
+   "line": 183,
+   "column": 43,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "fe82f8f96d",
+   "file": "components/esp_partition/partition.c",
+   "line": 184,
+   "column": 31,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "b9fe80ff9e",
+   "file": "components/esp_partition/partition.c",
+   "line": 187,
+   "column": 24,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "5adcf145e1",
+   "file": "components/esp_partition/partition.c",
+   "line": 188,
+   "column": 31,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f5cee40167",
+   "file": "components/esp_partition/partition.c",
+   "line": 189,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "survived"
+  },
+  {
+   "id": "1b37694d60",
+   "file": "components/esp_partition/partition.c",
+   "line": 191,
+   "column": 34,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "8bd0c227ae",
+   "file": "components/esp_partition/partition.c",
+   "line": 198,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c98036dae3",
+   "file": "components/esp_partition/partition.c",
+   "line": 207,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "8a606267b7",
+   "file": "components/esp_partition/partition.c",
+   "line": 209,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "32ffa60a3a",
+   "file": "components/esp_partition/partition.c",
+   "line": 212,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e3d978778a",
+   "file": "components/esp_partition/partition.c",
+   "line": 219,
+   "column": 13,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "b46179d406",
+   "file": "components/esp_partition/partition.c",
+   "line": 219,
+   "column": 66,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "eb77081936",
+   "file": "components/esp_partition/partition.c",
+   "line": 221,
+   "column": 17,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "d9af1b98b8",
+   "file": "components/esp_partition/partition.c",
+   "line": 228,
+   "column": 13,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "20581aef65",
+   "file": "components/esp_partition/partition.c",
+   "line": 236,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "ced65e7984",
+   "file": "components/esp_partition/partition.c",
+   "line": 242,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "45e817e579",
+   "file": "components/esp_partition/partition.c",
+   "line": 250,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "6f96f8f318",
+   "file": "components/esp_partition/partition.c",
+   "line": 256,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "c78ccea3d8",
+   "file": "components/esp_partition/partition.c",
+   "line": 258,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "dd232843da",
+   "file": "components/esp_partition/partition.c",
+   "line": 265,
+   "column": 15,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "1938b6c008",
+   "file": "components/esp_partition/partition.c",
+   "line": 268,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "78774a7bfb",
+   "file": "components/esp_partition/partition.c",
+   "line": 271,
+   "column": 17,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "86d9cd8ee1",
+   "file": "components/esp_partition/partition.c",
+   "line": 271,
+   "column": 19,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "031e7027fe",
+   "file": "components/esp_partition/partition.c",
+   "line": 272,
+   "column": 21,
+   "operator": "cxx_ne_to_eq",
+   "status": "survived"
+  },
+  {
+   "id": "ca2cd587f2",
+   "file": "components/esp_partition/partition.c",
+   "line": 276,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "ee8ecd4a50",
+   "file": "components/esp_partition/partition.c",
+   "line": 286,
+   "column": 12,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f988a6f04b",
+   "file": "components/esp_partition/partition.c",
+   "line": 289,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "a92001feed",
+   "file": "components/esp_partition/partition.c",
+   "line": 290,
+   "column": 17,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "e640b39b18",
+   "file": "components/esp_partition/partition.c",
+   "line": 300,
+   "column": 9,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "4614cec24b",
+   "file": "components/esp_partition/partition.c",
+   "line": 300,
+   "column": 36,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "17ec65ecc9",
+   "file": "components/esp_partition/partition.c",
+   "line": 305,
+   "column": 14,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "8928f1138e",
+   "file": "components/esp_partition/partition.c",
+   "line": 305,
+   "column": 51,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "441f88df56",
+   "file": "components/esp_partition/partition.c",
+   "line": 311,
+   "column": 12,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f154b28f01",
+   "file": "components/esp_partition/partition.c",
+   "line": 324,
+   "column": 23,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "3f166b5310",
+   "file": "components/esp_partition/partition.c",
+   "line": 325,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a1efff03aa",
+   "file": "components/esp_partition/partition.c",
+   "line": 328,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "8294336218",
+   "file": "components/esp_partition/partition.c",
+   "line": 329,
+   "column": 26,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "f3a3fde3be",
+   "file": "components/esp_partition/partition.c",
+   "line": 331,
+   "column": 22,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "b7a67a42f0",
+   "file": "components/esp_partition/partition.c",
+   "line": 331,
+   "column": 60,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "678660ba34",
+   "file": "components/esp_partition/partition.c",
+   "line": 334,
+   "column": 25,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "7557bab694",
+   "file": "components/esp_partition/partition.c",
+   "line": 334,
+   "column": 69,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "bed0ef4853",
+   "file": "components/esp_partition/partition.c",
+   "line": 337,
+   "column": 23,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "a1c34e1cde",
+   "file": "components/esp_partition/partition.c",
+   "line": 337,
+   "column": 34,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "6c2a95eb40",
+   "file": "components/esp_partition/partition.c",
+   "line": 337,
+   "column": 62,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "b1f8b411b0",
+   "file": "components/esp_partition/partition.c",
+   "line": 343,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "77504ef3d1",
+   "file": "components/esp_partition/partition.c",
+   "line": 344,
+   "column": 23,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "d4c05081a4",
+   "file": "components/esp_partition/partition.c",
+   "line": 345,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "6308e28d5c",
+   "file": "components/esp_partition/partition.c",
+   "line": 357,
+   "column": 12,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c0f7e88d4b",
+   "file": "components/esp_partition/partition.c",
+   "line": 361,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "ea20356c82",
+   "file": "components/esp_partition/partition.c",
+   "line": 368,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "9c5e503ab4",
+   "file": "components/esp_partition/partition.c",
+   "line": 380,
+   "column": 26,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "b7443c8958",
+   "file": "components/esp_partition/partition.c",
+   "line": 380,
+   "column": 51,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "2a9a6443d9",
+   "file": "components/esp_partition/partition.c",
+   "line": 380,
+   "column": 51,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "d3f8ec7c14",
+   "file": "components/esp_partition/partition.c",
+   "line": 384,
+   "column": 15,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "22b7fa9064",
+   "file": "components/esp_partition/partition.c",
+   "line": 387,
+   "column": 27,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "90cebdc871",
+   "file": "components/esp_partition/partition.c",
+   "line": 388,
+   "column": 31,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "bf04990418",
+   "file": "components/esp_partition/partition.c",
+   "line": 389,
+   "column": 36,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "66c31fc711",
+   "file": "components/esp_partition/partition.c",
+   "line": 390,
+   "column": 41,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "a1722a014e",
+   "file": "components/esp_partition/partition.c",
+   "line": 391,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "f30c349acb",
+   "file": "components/esp_partition/partition.c",
+   "line": 396,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "survived"
+  },
+  {
+   "id": "2ec53b8019",
+   "file": "components/esp_partition/partition.c",
+   "line": 404,
+   "column": 23,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "b295a2a6b5",
+   "file": "components/esp_partition/partition.c",
+   "line": 409,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "ab9b87edb0",
+   "file": "components/esp_partition/partition.c",
+   "line": 412,
+   "column": 16,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "8670fc372d",
+   "file": "components/esp_partition/partition.c",
+   "line": 412,
+   "column": 23,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "149c5c4dc9",
+   "file": "components/esp_partition/partition.c",
+   "line": 412,
+   "column": 23,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "48a1b7e20b",
+   "file": "components/esp_partition/partition.c",
+   "line": 417,
+   "column": 15,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "1e65f065f0",
+   "file": "components/esp_partition/partition.c",
+   "line": 417,
+   "column": 21,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "e34cf947cd",
+   "file": "components/esp_partition/partition.c",
+   "line": 418,
+   "column": 13,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "c9b076706b",
+   "file": "components/esp_partition/partition.c",
+   "line": 423,
+   "column": 14,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "dce7921ca8",
+   "file": "components/esp_partition/partition.c",
+   "line": 427,
+   "column": 24,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "65feac37ff",
+   "file": "components/esp_partition/partition.c",
+   "line": 428,
+   "column": 21,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "b76b7e30c0",
+   "file": "components/esp_partition/partition.c",
+   "line": 429,
+   "column": 21,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "556e2717dd",
+   "file": "components/esp_partition/partition.c",
+   "line": 430,
+   "column": 24,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3345bfba23",
+   "file": "components/esp_partition/partition.c",
+   "line": 435,
+   "column": 27,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "042850a445",
+   "file": "components/esp_partition/partition.c",
+   "line": 436,
+   "column": 26,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6008bac679",
+   "file": "components/esp_partition/partition.c",
+   "line": 436,
+   "column": 40,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "0687b098ca",
+   "file": "components/esp_partition/partition.c",
+   "line": 436,
+   "column": 69,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "c610096999",
+   "file": "components/esp_partition/partition.c",
+   "line": 438,
+   "column": 25,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "4d8c85718a",
+   "file": "components/esp_partition/partition.c",
+   "line": 439,
+   "column": 27,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "df09d583b4",
+   "file": "components/esp_partition/partition.c",
+   "line": 440,
+   "column": 5,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "93cd82986f",
+   "file": "components/esp_partition/partition.c",
+   "line": 442,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "133eea10e0",
+   "file": "components/esp_partition/partition.c",
+   "line": 447,
+   "column": 33,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "3335c55674",
+   "file": "components/esp_partition/partition.c",
+   "line": 448,
+   "column": 17,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "583fb436bc",
+   "file": "components/esp_partition/partition.c",
+   "line": 448,
+   "column": 64,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "a08a01b29e",
+   "file": "components/esp_partition/partition.c",
+   "line": 449,
+   "column": 84,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "147e6cc140",
+   "file": "components/esp_partition/partition.c",
+   "line": 450,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "9b74923f77",
+   "file": "components/esp_partition/partition.c",
+   "line": 451,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "bf180e9bcf",
+   "file": "components/esp_partition/partition.c",
+   "line": 456,
+   "column": 14,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "6482cf71a5",
+   "file": "components/esp_partition/partition.c",
+   "line": 461,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "8394c69deb",
+   "file": "components/esp_partition/partition.c",
+   "line": 462,
+   "column": 23,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "6a22112bf2",
+   "file": "components/esp_partition/partition.c",
+   "line": 470,
+   "column": 15,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "1f0020acdc",
+   "file": "components/esp_partition/partition.c",
+   "line": 471,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "33fe54fe97",
+   "file": "components/esp_partition/partition.c",
+   "line": 475,
+   "column": 23,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "0655037c43",
+   "file": "components/esp_partition/partition.c",
+   "line": 477,
+   "column": 24,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "e8a342806d",
+   "file": "components/esp_partition/partition.c",
+   "line": 481,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "f676268d98",
+   "file": "components/esp_partition/partition.c",
+   "line": 482,
+   "column": 20,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "77a1826cdb",
+   "file": "components/esp_partition/partition.c",
+   "line": 486,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "cdd0dde159",
+   "file": "components/esp_partition/partition.c",
+   "line": 492,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "e55b1fa6f5",
+   "file": "components/esp_partition/partition.c",
+   "line": 492,
+   "column": 39,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f9ff60889d",
+   "file": "components/esp_partition/partition.c",
+   "line": 492,
+   "column": 59,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "1a60c569fa",
+   "file": "components/esp_partition/partition.c",
+   "line": 496,
+   "column": 20,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "0fd953f027",
+   "file": "components/esp_partition/partition.c",
+   "line": 496,
+   "column": 20,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "4f1fe1728f",
+   "file": "components/esp_partition/partition.c",
+   "line": 496,
+   "column": 52,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "d3b295dbc1",
+   "file": "components/esp_partition/partition.c",
+   "line": 496,
+   "column": 52,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "bd51268f86",
+   "file": "components/esp_partition/partition.c",
+   "line": 502,
+   "column": 30,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "4de05b6f78",
+   "file": "components/esp_partition/partition.c",
+   "line": 508,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "b22de4c656",
+   "file": "components/esp_partition/partition.c",
+   "line": 509,
+   "column": 14,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "db966988d4",
+   "file": "components/esp_partition/partition.c",
+   "line": 510,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "b97b7ece1c",
+   "file": "components/esp_partition/partition.c",
+   "line": 510,
+   "column": 31,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "8446274921",
+   "file": "components/esp_partition/partition.c",
+   "line": 511,
+   "column": 25,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "04c0f80aa4",
+   "file": "components/esp_partition/partition.c",
+   "line": 511,
+   "column": 43,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "f5144a374f",
+   "file": "components/esp_partition/partition.c",
+   "line": 516,
+   "column": 87,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "36ce5cff8e",
+   "file": "components/esp_partition/partition.c",
+   "line": 516,
+   "column": 87,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "147472fb2f",
+   "file": "components/esp_partition/partition.c",
+   "line": 517,
+   "column": 93,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "402731004d",
+   "file": "components/esp_partition/partition.c",
+   "line": 517,
+   "column": 93,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "4e511b1d71",
+   "file": "components/esp_partition/partition.c",
+   "line": 521,
+   "column": 15,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "9175c21d50",
+   "file": "components/esp_partition/partition.c",
+   "line": 521,
+   "column": 23,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "3e41f8b92f",
+   "file": "components/esp_partition/partition.c",
+   "line": 527,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "e57e9f2616",
+   "file": "components/esp_partition/partition.c",
+   "line": 528,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "b96812a63e",
+   "file": "components/esp_partition/partition.c",
+   "line": 529,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "036a7b4e9e",
+   "file": "components/esp_partition/partition.c",
+   "line": 531,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "c23fe8b304",
+   "file": "components/esp_partition/partition.c",
+   "line": 531,
+   "column": 37,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "0306c909e7",
+   "file": "components/esp_partition/partition.c",
+   "line": 532,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "018cf92620",
+   "file": "components/esp_partition/partition.c",
+   "line": 533,
+   "column": 27,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "4e5a920ee0",
+   "file": "components/esp_partition/partition.c",
+   "line": 533,
+   "column": 27,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "37d130c491",
+   "file": "components/esp_partition/partition.c",
+   "line": 534,
+   "column": 18,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "2651e8100e",
+   "file": "components/esp_partition/partition.c",
+   "line": 537,
+   "column": 15,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "44e293518c",
+   "file": "components/esp_partition/partition.c",
+   "line": 537,
+   "column": 17,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "b3fbdc149c",
+   "file": "components/esp_partition/partition.c",
+   "line": 538,
+   "column": 19,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "de7ec4a471",
+   "file": "components/esp_partition/partition.c",
+   "line": 539,
+   "column": 31,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "71a3e53049",
+   "file": "components/esp_partition/partition.c",
+   "line": 540,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "ff2fee2f51",
+   "file": "components/esp_partition/partition.c",
+   "line": 540,
+   "column": 21,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "bcb387eb95",
+   "file": "components/esp_partition/partition.c",
+   "line": 541,
+   "column": 23,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "f7768424ea",
+   "file": "components/esp_partition/partition.c",
+   "line": 543,
+   "column": 17,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "1e430a4630",
+   "file": "components/esp_partition/partition.c",
+   "line": 546,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "6fd1b590f7",
+   "file": "components/esp_partition/partition.c",
+   "line": 548,
+   "column": 34,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "b5f791f985",
+   "file": "components/esp_partition/partition.c",
+   "line": 548,
+   "column": 36,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "58e2b7a66b",
+   "file": "components/esp_partition/partition.c",
+   "line": 549,
+   "column": 24,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "43d5d7234c",
+   "file": "components/esp_partition/partition.c",
+   "line": 550,
+   "column": 17,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "killed"
+  },
+  {
+   "id": "3a5cfd891c",
+   "file": "components/esp_partition/partition.c",
+   "line": 550,
+   "column": 37,
+   "operator": "cxx_ge_to_gt",
+   "status": "killed"
+  },
+  {
+   "id": "e8acf57aec",
+   "file": "components/esp_partition/partition.c",
+   "line": 550,
+   "column": 37,
+   "operator": "cxx_ge_to_lt",
+   "status": "killed"
+  },
+  {
+   "id": "f8ca38ea78",
+   "file": "components/esp_partition/partition.c",
+   "line": 555,
+   "column": 28,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "32b0b8cb3a",
+   "file": "components/esp_partition/partition.c",
+   "line": 556,
+   "column": 29,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "7a1b2daea4",
+   "file": "components/esp_partition/partition.c",
+   "line": 557,
+   "column": 24,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  }
+ ]
+}

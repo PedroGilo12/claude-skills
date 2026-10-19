@@ -1,0 +1,1660 @@
+{
+ "target": "onoff",
+ "label": "ref",
+ "kind": "zephyr",
+ "suites": [
+  "tests/lib/onoff"
+ ],
+ "cmd": null,
+ "target_ref": "v4.2.1",
+ "target_sha": "64e98eb5278d790f3b3e5279ca8b39b45097bbc0",
+ "repo_commit": null,
+ "mull": "0.34.1",
+ "mutators": [
+  "cxx_all"
+ ],
+ "date": "2026-10-19",
+ "coverage": {
+  "lib/utils/onoff.c": {
+   "line": [
+    264,
+    267
+   ],
+   "branch": [
+    154,
+    166
+   ],
+   "function": [
+    18,
+    18
+   ]
+  }
+ },
+ "mutation": {
+  "lib/utils/onoff.c": {
+   "killed": 185,
+   "survived": 15,
+   "equivalent": 2,
+   "score": 92.5
+  }
+ },
+ "vs_ref": null,
+ "mutants": [
+  {
+   "id": "4d62678fb1",
+   "file": "lib/utils/onoff.c",
+   "line": 118,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "0f0446e2f9",
+   "file": "lib/utils/onoff.c",
+   "line": 118,
+   "column": 22,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "2542908969",
+   "file": "lib/utils/onoff.c",
+   "line": 119,
+   "column": 8,
+   "operator": "cxx_or_to_and",
+   "status": "killed"
+  },
+  {
+   "id": "e873f8f209",
+   "file": "lib/utils/onoff.c",
+   "line": 119,
+   "column": 22,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "393e937fe9",
+   "file": "lib/utils/onoff.c",
+   "line": 125,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f944144dfa",
+   "file": "lib/utils/onoff.c",
+   "line": 125,
+   "column": 28,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c0b2e37541",
+   "file": "lib/utils/onoff.c",
+   "line": 129,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "2db4c5079c",
+   "file": "lib/utils/onoff.c",
+   "line": 129,
+   "column": 11,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "1d3d0beb5d",
+   "file": "lib/utils/onoff.c",
+   "line": 131,
+   "column": 10,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "14a3d405f9",
+   "file": "lib/utils/onoff.c",
+   "line": 133,
+   "column": 4,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "88daf4ca7f",
+   "file": "lib/utils/onoff.c",
+   "line": 133,
+   "column": 45,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "e907b97f1f",
+   "file": "lib/utils/onoff.c",
+   "line": 134,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "eb261f0f85",
+   "file": "lib/utils/onoff.c",
+   "line": 143,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "134ae730cd",
+   "file": "lib/utils/onoff.c",
+   "line": 144,
+   "column": 22,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "590a9b9b30",
+   "file": "lib/utils/onoff.c",
+   "line": 145,
+   "column": 29,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "6c1347352d",
+   "file": "lib/utils/onoff.c",
+   "line": 146,
+   "column": 28,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "e175c9de45",
+   "file": "lib/utils/onoff.c",
+   "line": 176,
+   "column": 9,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "67511024d9",
+   "file": "lib/utils/onoff.c",
+   "line": 186,
+   "column": 10,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "9b95b9e545",
+   "file": "lib/utils/onoff.c",
+   "line": 193,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "c8c2a2000b",
+   "file": "lib/utils/onoff.c",
+   "line": 206,
+   "column": 16,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "31a7df96c9",
+   "file": "lib/utils/onoff.c",
+   "line": 207,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "0fc1f0d33d",
+   "file": "lib/utils/onoff.c",
+   "line": 213,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "6fdf9f3d93",
+   "file": "lib/utils/onoff.c",
+   "line": 214,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "294c1d2978",
+   "file": "lib/utils/onoff.c",
+   "line": 214,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "9dc709beeb",
+   "file": "lib/utils/onoff.c",
+   "line": 216,
+   "column": 13,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "1ccc302ee3",
+   "file": "lib/utils/onoff.c",
+   "line": 217,
+   "column": 10,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "1525678386",
+   "file": "lib/utils/onoff.c",
+   "line": 218,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "36a004c46c",
+   "file": "lib/utils/onoff.c",
+   "line": 219,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f0b30465a7",
+   "file": "lib/utils/onoff.c",
+   "line": 220,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "9a7461a1e9",
+   "file": "lib/utils/onoff.c",
+   "line": 221,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "cbc65dd664",
+   "file": "lib/utils/onoff.c",
+   "line": 222,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "692620c5b4",
+   "file": "lib/utils/onoff.c",
+   "line": 223,
+   "column": 10,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "246ef9f7e7",
+   "file": "lib/utils/onoff.c",
+   "line": 224,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "dc54316925",
+   "file": "lib/utils/onoff.c",
+   "line": 241,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "4f1ecdeec5",
+   "file": "lib/utils/onoff.c",
+   "line": 241,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "71d4d6b885",
+   "file": "lib/utils/onoff.c",
+   "line": 243,
+   "column": 10,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "9fdb79bbfd",
+   "file": "lib/utils/onoff.c",
+   "line": 243,
+   "column": 10,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "df8120a8c2",
+   "file": "lib/utils/onoff.c",
+   "line": 246,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "b14e0237c2",
+   "file": "lib/utils/onoff.c",
+   "line": 247,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "119bda4d0a",
+   "file": "lib/utils/onoff.c",
+   "line": 248,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "12b6e56c5b",
+   "file": "lib/utils/onoff.c",
+   "line": 249,
+   "column": 16,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "996f07ee21",
+   "file": "lib/utils/onoff.c",
+   "line": 251,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "8ae7efdfea",
+   "file": "lib/utils/onoff.c",
+   "line": 253,
+   "column": 13,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "616874a292",
+   "file": "lib/utils/onoff.c",
+   "line": 260,
+   "column": 15,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "b92954cded",
+   "file": "lib/utils/onoff.c",
+   "line": 263,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "c8625e019e",
+   "file": "lib/utils/onoff.c",
+   "line": 267,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a4c4794d16",
+   "file": "lib/utils/onoff.c",
+   "line": 269,
+   "column": 7,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "258472bcdd",
+   "file": "lib/utils/onoff.c",
+   "line": 269,
+   "column": 28,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "9b67bd8538",
+   "file": "lib/utils/onoff.c",
+   "line": 270,
+   "column": 15,
+   "operator": "cxx_or_assign_to_and_assign",
+   "status": "killed"
+  },
+  {
+   "id": "f6234d2ad2",
+   "file": "lib/utils/onoff.c",
+   "line": 272,
+   "column": 19,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "6b9a8c2ce3",
+   "file": "lib/utils/onoff.c",
+   "line": 278,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "0acb9340c7",
+   "file": "lib/utils/onoff.c",
+   "line": 279,
+   "column": 7,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "8f05813f55",
+   "file": "lib/utils/onoff.c",
+   "line": 279,
+   "column": 28,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "35c2dea588",
+   "file": "lib/utils/onoff.c",
+   "line": 280,
+   "column": 15,
+   "operator": "cxx_or_assign_to_and_assign",
+   "status": "killed"
+  },
+  {
+   "id": "d83c3e48b1",
+   "file": "lib/utils/onoff.c",
+   "line": 303,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "f2dc0d72f6",
+   "file": "lib/utils/onoff.c",
+   "line": 303,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "8549411368",
+   "file": "lib/utils/onoff.c",
+   "line": 304,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "equivalent"
+  },
+  {
+   "id": "8830a35ef6",
+   "file": "lib/utils/onoff.c",
+   "line": 305,
+   "column": 7,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "381e25e1a9",
+   "file": "lib/utils/onoff.c",
+   "line": 305,
+   "column": 33,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "7a5c426c0d",
+   "file": "lib/utils/onoff.c",
+   "line": 305,
+   "column": 58,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "6a2e395df8",
+   "file": "lib/utils/onoff.c",
+   "line": 313,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "62d6b52a19",
+   "file": "lib/utils/onoff.c",
+   "line": 314,
+   "column": 15,
+   "operator": "cxx_or_assign_to_and_assign",
+   "status": "killed"
+  },
+  {
+   "id": "cb6bb42590",
+   "file": "lib/utils/onoff.c",
+   "line": 318,
+   "column": 15,
+   "operator": "cxx_or_assign_to_and_assign",
+   "status": "killed"
+  },
+  {
+   "id": "0af02d98c2",
+   "file": "lib/utils/onoff.c",
+   "line": 324,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "00f89bb48e",
+   "file": "lib/utils/onoff.c",
+   "line": 328,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "bd761d2913",
+   "file": "lib/utils/onoff.c",
+   "line": 329,
+   "column": 8,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "27e515b04e",
+   "file": "lib/utils/onoff.c",
+   "line": 329,
+   "column": 10,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "7a1e230643",
+   "file": "lib/utils/onoff.c",
+   "line": 332,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c32a2394be",
+   "file": "lib/utils/onoff.c",
+   "line": 336,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "7a3a29e9d3",
+   "file": "lib/utils/onoff.c",
+   "line": 337,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "1ddb0c0cd7",
+   "file": "lib/utils/onoff.c",
+   "line": 338,
+   "column": 8,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "97e6eb6a77",
+   "file": "lib/utils/onoff.c",
+   "line": 339,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "cc39526fd9",
+   "file": "lib/utils/onoff.c",
+   "line": 341,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "fb6bbe6a70",
+   "file": "lib/utils/onoff.c",
+   "line": 347,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a620cc1712",
+   "file": "lib/utils/onoff.c",
+   "line": 348,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "12c9e5edad",
+   "file": "lib/utils/onoff.c",
+   "line": 354,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "f7c38676db",
+   "file": "lib/utils/onoff.c",
+   "line": 355,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "97abf6cc27",
+   "file": "lib/utils/onoff.c",
+   "line": 361,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "c4f388cf6f",
+   "file": "lib/utils/onoff.c",
+   "line": 371,
+   "column": 8,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "a02682ceb0",
+   "file": "lib/utils/onoff.c",
+   "line": 371,
+   "column": 29,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "90b9ba3b01",
+   "file": "lib/utils/onoff.c",
+   "line": 371,
+   "column": 44,
+   "operator": "cxx_and_to_or",
+   "status": "survived"
+  },
+  {
+   "id": "5bc98cda7b",
+   "file": "lib/utils/onoff.c",
+   "line": 372,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "bf457dad7c",
+   "file": "lib/utils/onoff.c",
+   "line": 374,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "ac842f8e1f",
+   "file": "lib/utils/onoff.c",
+   "line": 376,
+   "column": 11,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "601b8d2645",
+   "file": "lib/utils/onoff.c",
+   "line": 377,
+   "column": 19,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "d4e3d34214",
+   "file": "lib/utils/onoff.c",
+   "line": 378,
+   "column": 13,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "37d04701b8",
+   "file": "lib/utils/onoff.c",
+   "line": 378,
+   "column": 32,
+   "operator": "cxx_or_to_and",
+   "status": "killed"
+  },
+  {
+   "id": "366f75759d",
+   "file": "lib/utils/onoff.c",
+   "line": 380,
+   "column": 15,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "c3c6fd780c",
+   "file": "lib/utils/onoff.c",
+   "line": 381,
+   "column": 10,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6ecf51badd",
+   "file": "lib/utils/onoff.c",
+   "line": 381,
+   "column": 18,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "193f45e643",
+   "file": "lib/utils/onoff.c",
+   "line": 383,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "582aa1ef41",
+   "file": "lib/utils/onoff.c",
+   "line": 386,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "aaa3c652b0",
+   "file": "lib/utils/onoff.c",
+   "line": 389,
+   "column": 9,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "07e924a694",
+   "file": "lib/utils/onoff.c",
+   "line": 390,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "71ed2f4293",
+   "file": "lib/utils/onoff.c",
+   "line": 393,
+   "column": 16,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "ccd2e4ca88",
+   "file": "lib/utils/onoff.c",
+   "line": 398,
+   "column": 15,
+   "operator": "cxx_and_assign_to_or_assign",
+   "status": "killed"
+  },
+  {
+   "id": "e75984b77f",
+   "file": "lib/utils/onoff.c",
+   "line": 404,
+   "column": 19,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "b9b1784c99",
+   "file": "lib/utils/onoff.c",
+   "line": 404,
+   "column": 42,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "3be6a65ffd",
+   "file": "lib/utils/onoff.c",
+   "line": 405,
+   "column": 15,
+   "operator": "cxx_and_assign_to_or_assign",
+   "status": "killed"
+  },
+  {
+   "id": "8cd78244e3",
+   "file": "lib/utils/onoff.c",
+   "line": 406,
+   "column": 8,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "7d4ef912d0",
+   "file": "lib/utils/onoff.c",
+   "line": 407,
+   "column": 26,
+   "operator": "cxx_and_to_or",
+   "status": "survived"
+  },
+  {
+   "id": "89cf1e97d4",
+   "file": "lib/utils/onoff.c",
+   "line": 407,
+   "column": 48,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "d316dd036b",
+   "file": "lib/utils/onoff.c",
+   "line": 408,
+   "column": 15,
+   "operator": "cxx_and_assign_to_or_assign",
+   "status": "killed"
+  },
+  {
+   "id": "0c0870117d",
+   "file": "lib/utils/onoff.c",
+   "line": 409,
+   "column": 8,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "91dffda494",
+   "file": "lib/utils/onoff.c",
+   "line": 414,
+   "column": 9,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "4acc8c1676",
+   "file": "lib/utils/onoff.c",
+   "line": 414,
+   "column": 22,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "c0f1328898",
+   "file": "lib/utils/onoff.c",
+   "line": 415,
+   "column": 15,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "1283d129c2",
+   "file": "lib/utils/onoff.c",
+   "line": 418,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "9304ab42d3",
+   "file": "lib/utils/onoff.c",
+   "line": 424,
+   "column": 7,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "995fa9d7e8",
+   "file": "lib/utils/onoff.c",
+   "line": 425,
+   "column": 7,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "ba683c3a00",
+   "file": "lib/utils/onoff.c",
+   "line": 426,
+   "column": 7,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "e2ce446d94",
+   "file": "lib/utils/onoff.c",
+   "line": 427,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "6cfdf8f9ae",
+   "file": "lib/utils/onoff.c",
+   "line": 427,
+   "column": 11,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "f27e76cf7f",
+   "file": "lib/utils/onoff.c",
+   "line": 429,
+   "column": 9,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "c3db7027a3",
+   "file": "lib/utils/onoff.c",
+   "line": 429,
+   "column": 9,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "3898a0a89d",
+   "file": "lib/utils/onoff.c",
+   "line": 434,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "c2792eec7c",
+   "file": "lib/utils/onoff.c",
+   "line": 434,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "bbf7ca0e05",
+   "file": "lib/utils/onoff.c",
+   "line": 437,
+   "column": 16,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "4de3681d94",
+   "file": "lib/utils/onoff.c",
+   "line": 438,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "415d353bf2",
+   "file": "lib/utils/onoff.c",
+   "line": 442,
+   "column": 5,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "1d79777f74",
+   "file": "lib/utils/onoff.c",
+   "line": 443,
+   "column": 12,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "4ca4406c23",
+   "file": "lib/utils/onoff.c",
+   "line": 445,
+   "column": 10,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3da0124207",
+   "file": "lib/utils/onoff.c",
+   "line": 446,
+   "column": 13,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "50003591af",
+   "file": "lib/utils/onoff.c",
+   "line": 447,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "570773a622",
+   "file": "lib/utils/onoff.c",
+   "line": 448,
+   "column": 16,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "db753278bd",
+   "file": "lib/utils/onoff.c",
+   "line": 449,
+   "column": 16,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "1a6672496f",
+   "file": "lib/utils/onoff.c",
+   "line": 451,
+   "column": 9,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "354568309c",
+   "file": "lib/utils/onoff.c",
+   "line": 451,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "86e1f43943",
+   "file": "lib/utils/onoff.c",
+   "line": 452,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "1cecda71bf",
+   "file": "lib/utils/onoff.c",
+   "line": 453,
+   "column": 19,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "4ab397e196",
+   "file": "lib/utils/onoff.c",
+   "line": 454,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "92be4dc62f",
+   "file": "lib/utils/onoff.c",
+   "line": 457,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3817603d5c",
+   "file": "lib/utils/onoff.c",
+   "line": 462,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "90d8ce9e90",
+   "file": "lib/utils/onoff.c",
+   "line": 466,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "dcc15b2db7",
+   "file": "lib/utils/onoff.c",
+   "line": 468,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "5d2b071a37",
+   "file": "lib/utils/onoff.c",
+   "line": 471,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "31586dad44",
+   "file": "lib/utils/onoff.c",
+   "line": 480,
+   "column": 7,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "a32b068207",
+   "file": "lib/utils/onoff.c",
+   "line": 483,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "c5419fc953",
+   "file": "lib/utils/onoff.c",
+   "line": 483,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "cdef8ae19e",
+   "file": "lib/utils/onoff.c",
+   "line": 484,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "0f8a9a72b6",
+   "file": "lib/utils/onoff.c",
+   "line": 486,
+   "column": 12,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "cf44243f63",
+   "file": "lib/utils/onoff.c",
+   "line": 487,
+   "column": 13,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "dd0a19a942",
+   "file": "lib/utils/onoff.c",
+   "line": 488,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3d10e10c47",
+   "file": "lib/utils/onoff.c",
+   "line": 490,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "52262f2037",
+   "file": "lib/utils/onoff.c",
+   "line": 496,
+   "column": 12,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "3d5abf6f87",
+   "file": "lib/utils/onoff.c",
+   "line": 497,
+   "column": 7,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "7ce180aed5",
+   "file": "lib/utils/onoff.c",
+   "line": 497,
+   "column": 20,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "760ba2a024",
+   "file": "lib/utils/onoff.c",
+   "line": 501,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "0c8ee54ce6",
+   "file": "lib/utils/onoff.c",
+   "line": 503,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "d734a2418b",
+   "file": "lib/utils/onoff.c",
+   "line": 512,
+   "column": 7,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "735fae542d",
+   "file": "lib/utils/onoff.c",
+   "line": 513,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "a01465557a",
+   "file": "lib/utils/onoff.c",
+   "line": 513,
+   "column": 11,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "b41c5de8c0",
+   "file": "lib/utils/onoff.c",
+   "line": 515,
+   "column": 10,
+   "operator": "cxx_ge_to_gt",
+   "status": "killed"
+  },
+  {
+   "id": "2f4b882b0c",
+   "file": "lib/utils/onoff.c",
+   "line": 515,
+   "column": 10,
+   "operator": "cxx_ge_to_lt",
+   "status": "killed"
+  },
+  {
+   "id": "3904a53d9f",
+   "file": "lib/utils/onoff.c",
+   "line": 516,
+   "column": 34,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "4e077d3c17",
+   "file": "lib/utils/onoff.c",
+   "line": 517,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "ce3a4c55db",
+   "file": "lib/utils/onoff.c",
+   "line": 520,
+   "column": 9,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "fc54b7b5fd",
+   "file": "lib/utils/onoff.c",
+   "line": 520,
+   "column": 9,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "e44116529a",
+   "file": "lib/utils/onoff.c",
+   "line": 525,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "193982a690",
+   "file": "lib/utils/onoff.c",
+   "line": 525,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "c8f9d06d38",
+   "file": "lib/utils/onoff.c",
+   "line": 527,
+   "column": 5,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "41313d35df",
+   "file": "lib/utils/onoff.c",
+   "line": 529,
+   "column": 13,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "ea69e13d43",
+   "file": "lib/utils/onoff.c",
+   "line": 529,
+   "column": 33,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "4b8a2fa3cb",
+   "file": "lib/utils/onoff.c",
+   "line": 530,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "4039ecc724",
+   "file": "lib/utils/onoff.c",
+   "line": 532,
+   "column": 9,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "c6b0dd9c33",
+   "file": "lib/utils/onoff.c",
+   "line": 532,
+   "column": 18,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "ad41d0556a",
+   "file": "lib/utils/onoff.c",
+   "line": 533,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "59beb59614",
+   "file": "lib/utils/onoff.c",
+   "line": 537,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e2503b740f",
+   "file": "lib/utils/onoff.c",
+   "line": 539,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "1ef68de5a1",
+   "file": "lib/utils/onoff.c",
+   "line": 548,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c36d002266",
+   "file": "lib/utils/onoff.c",
+   "line": 548,
+   "column": 28,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c514a57c6a",
+   "file": "lib/utils/onoff.c",
+   "line": 552,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "a905b9c11a",
+   "file": "lib/utils/onoff.c",
+   "line": 554,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "b962e77911",
+   "file": "lib/utils/onoff.c",
+   "line": 554,
+   "column": 30,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "c545aaa000",
+   "file": "lib/utils/onoff.c",
+   "line": 556,
+   "column": 6,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "3f8ec801bb",
+   "file": "lib/utils/onoff.c",
+   "line": 560,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "d5b924e559",
+   "file": "lib/utils/onoff.c",
+   "line": 563,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "3433115a0f",
+   "file": "lib/utils/onoff.c",
+   "line": 571,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "e583de2921",
+   "file": "lib/utils/onoff.c",
+   "line": 572,
+   "column": 14,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "7cad14341e",
+   "file": "lib/utils/onoff.c",
+   "line": 573,
+   "column": 24,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "f637904dde",
+   "file": "lib/utils/onoff.c",
+   "line": 579,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "78b35ff063",
+   "file": "lib/utils/onoff.c",
+   "line": 581,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "bf86a3e372",
+   "file": "lib/utils/onoff.c",
+   "line": 589,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "3b88bbe803",
+   "file": "lib/utils/onoff.c",
+   "line": 591,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c20f704701",
+   "file": "lib/utils/onoff.c",
+   "line": 592,
+   "column": 14,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "3e0f9bfe50",
+   "file": "lib/utils/onoff.c",
+   "line": 598,
+   "column": 6,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "c317b29fdb",
+   "file": "lib/utils/onoff.c",
+   "line": 599,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "d277364c38",
+   "file": "lib/utils/onoff.c",
+   "line": 602,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "858442ba65",
+   "file": "lib/utils/onoff.c",
+   "line": 620,
+   "column": 11,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "3b28f3d703",
+   "file": "lib/utils/onoff.c",
+   "line": 626,
+   "column": 17,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "c200013a2c",
+   "file": "lib/utils/onoff.c",
+   "line": 626,
+   "column": 17,
+   "operator": "cxx_lt_to_le",
+   "status": "equivalent"
+  },
+  {
+   "id": "a3eb89e59e",
+   "file": "lib/utils/onoff.c",
+   "line": 627,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6821dfb16d",
+   "file": "lib/utils/onoff.c",
+   "line": 629,
+   "column": 10,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "544cd852bb",
+   "file": "lib/utils/onoff.c",
+   "line": 629,
+   "column": 10,
+   "operator": "cxx_lt_to_le",
+   "status": "survived"
+  },
+  {
+   "id": "700688523e",
+   "file": "lib/utils/onoff.c",
+   "line": 630,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3397b4fc42",
+   "file": "lib/utils/onoff.c",
+   "line": 631,
+   "column": 9,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "85019af9ec",
+   "file": "lib/utils/onoff.c",
+   "line": 633,
+   "column": 14,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "8ce0ff5caf",
+   "file": "lib/utils/onoff.c",
+   "line": 635,
+   "column": 14,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "35cf402a81",
+   "file": "lib/utils/onoff.c",
+   "line": 642,
+   "column": 6,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "9cf19c85c1",
+   "file": "lib/utils/onoff.c",
+   "line": 644,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "959465071b",
+   "file": "lib/utils/onoff.c",
+   "line": 646,
+   "column": 10,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "b4e7aca300",
+   "file": "lib/utils/onoff.c",
+   "line": 651,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  }
+ ]
+}
