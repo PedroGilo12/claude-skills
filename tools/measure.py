@@ -94,10 +94,18 @@ if os.environ.get("MEASURE_SPLIT") == "1":
     # Mutação: a cobertura da própria suíte (gcov) não serve e exigiria a runtime de profile do clang.
     args = [a for a in args if a not in ("--coverage", "-fprofile-arcs", "-ftest-coverage", "-lgcov")]
 sources = [a for a in args if a.endswith(SRC) and os.path.isfile(a)]
-single = {"-c", "-S", "-E", "-M", "-MM"} & set(args) or len(sources) < 2
+single = {"-S", "-E", "-M", "-MM"} & set(args) or len(sources) < 2
 if single or os.environ.get("MEASURE_SPLIT") != "1":
     os.execv(real, [real, *flags, *args])
 # Mutação: o mull reprocessa o comando gravado e exige um arquivo por compilação.
+# `cc -c a.c b.c` vira um `-c` por fonte (mesmo .o padrão de antes).
+if "-c" in args:
+    rest = [a for a in args if a not in sources]
+    for src in sources:
+        rc = subprocess.call([real, *flags, *rest, src])
+        if rc:
+            sys.exit(rc)
+    sys.exit(0)
 # `cc a.c b.c -o x` vira uma compilação por fonte + link, como num build CMake.
 rest, out, i = [], "a.out", 0
 while i < len(args):
@@ -295,7 +303,8 @@ def run_mull(target, root, bins, out, mull, mcfg, env, log, runner_args):
     merged = {}
     for n, binary in enumerate(sorted(set(bins))):
         name = f"bin{n}"
-        r = subprocess.run([str(mull / "bin/mull-runner-18"), "--workers", str(mcfg["workers"]),
+        timeout = ["--timeout", str(target["mull_timeout_ms"])] if target.get("mull_timeout_ms") else []
+        r = subprocess.run([str(mull / "bin/mull-runner-18"), "--workers", str(mcfg["workers"]), *timeout,
                             "--reporters", "Elements", "--report-dir", str(out), "--report-name", name,
                             "--allow-surviving", binary, *runner_args],
                            cwd=out, env=env, capture_output=True, text=True)

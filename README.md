@@ -85,12 +85,20 @@ the target (`benchmarks/targets.yaml`).
 |---|---|---|---|
 | `net_buf` (Zephyr) | v4.2.1 | `lib/net_buf/buf.c`, `lib/net_buf/buf_simple.c` | `tests/lib/net_buf`: 67 ztest cases |
 | `esp_partition` (ESP-IDF) | v5.4.2 | `components/esp_partition/partition.c` | `host_test/partition_api_test`: 19 Unity cases |
+| `onoff` (Zephyr), validation | v4.2.1 | `lib/utils/onoff.c` | `tests/lib/onoff` |
+| `log` (ESP-IDF), validation | v5.4.2 | 5 files under `components/log/src/` | `host_test/log_test` (Catch2) |
+
+The skill was iterated on the first two targets only. The validation targets were never used
+while writing it, so they show whether it overfits.
 
 ### Results
 
-**Measured versions: 0.2.0**, which iterated to 100% coverage (iterations 1 and 2), and
-**0.3.1**, which stops at the 95/95/90 default target (iteration 3, 2 runs per target). The
-"Without skill" column is Claude with the same prompt and no skill.
+**Measured versions:**
+- **0.2.0** iterated to 100% coverage (iterations 1 and 2).
+- **0.3.1** stops at the 95/95/90 default target (iteration 3, 2 runs per target).
+- **0.3.2** fixes the final-output gaps and was run on the validation targets (iteration 4).
+
+The "Without skill" column is Claude with the same prompt and no skill.
 
 In each coverage cell, the four numbers are function / line / branch coverage and the
 mutation score. Values are means.
@@ -132,6 +140,38 @@ metric)
 | Iteration 1 (14 expectations) | 41% | 98% |
 | Iteration 2 (23 stricter expectations, 3 runs graded) | — | 94% |
 | Iteration 3, v0.3.1 (same 23 expectations, 4 runs) | — | 92% |
+| Iteration 4, v0.3.2, validation (23 expectations, 6 runs) | — | 93% (96% of the 19 qualitative ones) |
+
+#### Validation (v0.3.2, iteration 4)
+
+**`lib/utils/onoff.c`**: 4 runs, 2 with an English prompt and 2 with a Portuguese one.
+
+| | Human reference | 0.3.2 (4 runs) |
+|---|---|---|
+| Function | 100% | 100% |
+| Line | 98.9% | 99.3% |
+| Branch | 92.8% | 94.7% |
+| **Mutation score** | **92.5%** | **93.1%** (93.0–93.5) |
+| Acceptance | — | 4/4 |
+
+**ESP-IDF `log` component**: 2 runs. Only run 2 could be measured (see below).
+
+| File | Reference mutation | 0.3.2 run 2: line / branch / function | 0.3.2 run 2: mutation |
+|---|---|---|---|
+| `buffer/log_buffers.c` | 30.4% | 100 / 100 / 100% | 97.8% ✅ |
+| `tag_log_level.c` | 68.0% | 100 / 100 / 100% | 100% ✅ |
+| `linked_list/log_linked_list.c` | 17.6% | 100 / 100 / 100% | 76.5% ❌ (< 80%) |
+| `cache/log_binary_heap.c` | 24.0% | 100 / 100 / 100% | ≥ 72.0% ❌ (< 80%) |
+| `util.c` | 100% | 100 / 100 / 100% | 100% ✅ |
+
+- Both runs wrote tests for the 29-bit generation counter overflow of the binary-heap cache.
+  These tests make ~2^29 API calls and take 11–22 s in a normal build. In the
+  mull-instrumented build they time out even at 60 s, so they can't be mutation-tested.
+- Run 2 put the two overflow tests in separate binaries. Those binaries are left out of
+  mutation, so mutants only they would kill count as survived, and 72.0% is a lower bound.
+- Run 1 put the overflow test in the same binary as every other heap test, so
+  `log_binary_heap.c` gets no mutants at all and the measurement is refused.
+- Every file beats its human reference on every metric. Two files miss the 80% mutation floor.
 
 ### Reading the results
 
@@ -154,28 +194,41 @@ metric)
     `CONFIG_PARTITION_TABLE_MD5`.
   - `esp_partition_verify` does not compare `readonly` and `erase_size`, although its
     documentation says all fields must match.
+  - `onoff_request` returns `-ENOTSUP` while the service is resetting after an error, where
+    the header documents `-EIO` for a recorded error. Found in 3 of 4 validation runs; the
+    4th recorded it only as a characterization test.
 - **0.3.1 vs 0.2.0:** stopping at 95/95/90 instead of 100% cut cost by ~20% at a small
   quality price. Every run still passes acceptance. `partition.c` mutation is unchanged
   (94.3% vs 94.5%). `buf.c` dropped 2–5 points (92.6% vs 94.8–97.8%), still well above the
   human reference (73.3%) and the no-skill baseline (91.4%).
+- **Validation:** on `onoff`, the skill's suite beats a strong human suite (93.1% vs 92.5%
+  mutation) in all 4 runs. The Portuguese prompt gives the same quality. On `log`, coverage is
+  100% everywhere and mutation beats the reference on every file. Two files stay below 80%.
+  On `log_binary_heap.c` the reason is the unmeasurable overflow tests. On
+  `log_linked_list.c` 4 mutants survive the suite itself, so that one is a real gap.
 - **Cost:** a 0.3.1 run takes ~8 min, 1.5–2.4 M tokens (most are cached context re-reads) and
   US$ 2.2–2.6. 0.2.0 took 9–12 min, 2.3–3.4 M tokens and US$ 2.5–3.4. These targets are large:
-  2 files and ~100 functions for net_buf. Smaller modules cost less.
+  2 files and ~100 functions for net_buf. Smaller modules cost less: a 0.3.2 run on `onoff`
+  takes ~4.5 min and US$ 1.4–1.5, and one on `log` takes ~7 min and ~US$ 2.
 
 ### Known limitations
 
-- **Recurring expectation failures in 0.3.1** (4 runs):
-  - the response names the environment but not the path label ("Path A"/"Path B"): 2 runs;
-  - only one branch metric is reported, not raw plus log/assert-excluded: 2 runs;
-  - net_buf suites use no FFF fakes (the kernel runs for real on `native_sim`): 2 of 2 runs.
-    It's an open question whether this expectation fits a module whose only dependencies are
-    kernel primitives.
-- **Validation is pending.** The skill was iterated on `net_buf` and `esp_partition` only.
-  The validation targets are ready but have not run yet:
-  - `onoff` (Zephyr state machine): reference 92.5% mutation score;
-  - the ESP-IDF `log` component (5 files): reference 17.6–100%.
-- **Path declaration:** in ESP-IDF runs, the environment/path declaration only appeared in
-  the final message (2 of 2 runs), not at the start.
+- **Fixed in 0.3.2.** Three expectations failed repeatedly in 0.3.1: the path label, the
+  raw + excluded branch metrics, and saying which venv was used. 0.3.2 makes them mandatory
+  lines of the final output, and all three passed in the 6 validation runs. The FFF
+  expectation now allows kernel primitives to run for real on `native_sim` when the response
+  says so. In 0.3.1, net_buf ran the kernel for real in 2 of 2 runs.
+- **Open in 0.3.2:**
+  - **Slow boundary tests.** Nothing stops the skill from writing a test that loops ~2^29
+    times to reach a counter overflow. Such a test makes mutation testing impractical.
+  - **Undocumented return codes.** The skill doesn't define whether an undocumented return
+    code is a defect or a documentation gap, and the onoff runs disagreed on it.
+  - **`Covers:` precision.** 2 of 6 runs had one annotation that claimed a partition its
+    test doesn't exercise.
+  - **Progress-message language.** 1 Portuguese run sent one progress message in Portuguese.
+    All code and the final output were in English.
+  - **Raw coverage file location.** The raw branch command writes `coverage-raw.txt` at the
+    project root instead of inside `twister-out/`.
 - **Trigger accuracy** with the plugin loaded has only been smoke-tested (2/2). The full
   40-query set (Portuguese and English) has not been run.
 

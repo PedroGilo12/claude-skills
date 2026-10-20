@@ -94,6 +94,9 @@ targets:
       idf.py -B build-measure --preview set-target linux &&
       idf.py -B build-measure build && ./build-measure/test_log_host.elf --rng-seed 1
     baseline_runner_args: [--rng-seed, '1']   # Catch2 v3 sorteia a ordem; o mull roda o binário com isto
+    # Testes de overflow do contador de idade do cache levam 11-22 s; o padrão do mull (3 s)
+    # derruba o warmup. Referência medida de novo com este valor: status idêntico.
+    mull_timeout_ms: 60000
     baseline_coverage:           # 2026-10-19 (linha / branch / função)
       components/log/src/buffer/log_buffers.c:                                  {line: 58/61, branch: 17/24, function: 7/7}
       components/log/src/log_level/tag_log_level/tag_log_level.c:               {line: 27/30, branch: 10/16, function: 4/5}

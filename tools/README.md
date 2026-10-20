@@ -51,11 +51,15 @@ do mull) e `dpkg-deb`. Para alvos Zephyr, use o venv do west ativo ou um `.venv`
     separa `cc a.c b.c -o x` em uma compilação por arquivo mais o link, porque o mull
     reprocessa o comando gravado e exige um arquivo por compilação.
 
+  O mesmo vale para `cc -c a.c b.c`, que vira um `-c` por fonte.
+
   Entre cobertura e mutação, o diretório da suíte é restaurado de um snapshot.
 
 **Mutação:** o `mull-runner` roda em cada executável de teste (o veredito é o exit code).
 Os binários são combinados: um mutante morre se **qualquer** binário o mata, e timeout conta
-como morto. Os mutantes de `benchmarks/equivalent-mutants.yaml` saem da conta.
+como morto. O timeout por execução é o padrão do mull (3 s), ou o `mull_timeout_ms` do alvo
+(o `log` usa 60 s). Um binário que falha ou estoura o timeout já sem mutação fica fora e aparece
+em `excluded_binaries`; os mutantes que só ele mataria contam como vivos. Os mutantes de `benchmarks/equivalent-mutants.yaml` saem da conta.
 **Score** = mortos / (mortos + vivos); um mutante em linha não executada conta como vivo.
 
 **Guardas** (a medição é recusada, não só reprovada):
