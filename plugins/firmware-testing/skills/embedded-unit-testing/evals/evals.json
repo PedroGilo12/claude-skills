@@ -33,7 +33,8 @@
         "[measured by tools/measure.py] Line, branch and function coverage >= the human reference, in each target file.",
         "[measured by tools/measure.py] Coverage >= 95/95/90 (line/branch/function) in each target file.",
         "[measured by tools/measure.py] Mutation score >= the human reference in each target file (buf.c 73.3%; buf_simple.c 79.6%).",
-        "[measured by tools/measure.py] Mutation score >= 80% in each target file."
+        "[measured by tools/measure.py] Mutation score >= 80% in each target file.",
+        "No test exceeds 1 s in the normal host build; a state seam (#include of the .c, assigning only internal variables, asserts through the public API) appears only after a test exceeded the limit and neither the public API nor an existing build-time setting could reach the state, and it is declared in the Isolation line; a brute-force test kept over 1 s is in its own binary and named."
       ]
     },
     {
@@ -67,7 +68,8 @@
         "[measured by tools/measure.py] Line, branch and function coverage >= the human reference, in each target file.",
         "[measured by tools/measure.py] Coverage >= 95/95/90 (line/branch/function) in each target file.",
         "[measured by tools/measure.py] Mutation score >= the human reference in each target file (partition.c 52.4%).",
-        "[measured by tools/measure.py] Mutation score >= 80% in each target file."
+        "[measured by tools/measure.py] Mutation score >= 80% in each target file.",
+        "No test exceeds 1 s in the normal host build; a state seam (#include of the .c, assigning only internal variables, asserts through the public API) appears only after a test exceeded the limit and neither the public API nor an existing build-time setting could reach the state, and it is declared in the Isolation line; a brute-force test kept over 1 s is in its own binary and named."
       ]
     }
   ]

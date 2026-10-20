@@ -40,7 +40,9 @@ brittle suite.
   scan the project** for other targets nor test neighboring modules on your own.
 - **Never modify the target files** — not temporarily, not "to test and revert". The suite
   compiles the original `.c` files, with no copy in the test directory. To reach something
-  hard, use the public API, fakes of the dependencies or a separate test binary.
+  hard, use the public API, fakes of the dependencies or a separate test binary. Setting a
+  module's internal state from the test (state seam) is a **last resort**, allowed only under
+  the slow-test rule in Phase 7.
 - **Autonomous.** Generate, run and report without asking for confirmation to execute. There
   are **two** exceptions where you **stop and ask**: (a) Path C (neither Zephyr nor ESP-IDF)
   where you cannot identify any unit test framework (Phase 0); (b) every 2 coverage
@@ -130,6 +132,15 @@ Apply the 3 lenses from `references/specification-based-testing.md` to each func
 input in isolation, inputs in combination, and output classes. Consider NULL/empty and the
 implicit domain rules. If the function has state, also partition by the **state** of the
 module/context.
+
+**Size is a category of its own.** For every variable-size input (string, buffer, array,
+list), partition its length: NULL / empty / 1 / typical / **long**. Long means well past any
+size the API or module states (buffer sizes, `*_MAX`, header fields), and at least 64 when
+none is stated. When a module copies or allocates from the input's length, short values run
+every branch, so coverage never shows the long case is missing. When the module **keeps** the
+input (stores a copy, not the pointer), add a case that overwrites the caller's buffer after
+the call and then queries with an equal but distinct value. That proves the module owns a
+complete copy.
 
 Produce, per function, a **named, numbered catalog** with stable IDs within the suite:
 - Partitions: `<func>/P1, P2, …`
@@ -262,6 +273,25 @@ Run the path's tool and **point to the artifacts it generates** (do not write a 
 
 Details and troubleshooting in each path's file.
 
+**Slow tests: 1 s per test, in the normal host build.** After each run, read the per-test
+durations from the runner (ztest/twister print them; Catch2 `--durations yes`; Unity
+`UNITY_INCLUDE_EXEC_TIME`, or `time` per binary). A unit test that takes longer usually
+brute-forces a state, e.g. ~2^29 calls to reach a counter wrap. It slows every CI run and
+makes mutation testing impractical. Rework each such test with the **first** option that
+works:
+1. the public API reaches the state faster (a setter, a config call, a smaller instance);
+2. a build-time setting the module already offers (`#ifndef` constant, Kconfig/`sdkconfig`);
+3. **state seam, only when 1 and 2 are impossible:** the test file `#include`s the module's
+   `.c` (and that binary does not link it separately) and **only assigns** the internal
+   variable(s) needed to stand just before the state, e.g. `counter = MAX - 2`. The assigned
+   state must satisfy the module's invariants (here: the counter above every stored value).
+   Never call `static` functions this way, and never read internal variables in asserts:
+   assertions still go through the public API;
+4. otherwise keep the brute-force test, in its own binary, and name it in the final output.
+
+Never use a seam for convenience or to save a few calls. It couples the test to internal
+names, so it is justified only by a test that exceeded the limit.
+
 ## Phase 8 — Coverage iteration
 
 Compare the coverage **reported by the tools** with the **95/95/90** target (or the one the
@@ -307,7 +337,8 @@ said earlier:
 - **Branch coverage:** `raw X/Y (Z%) · without log/assert X/Y (Z%) — compared: without
   log/assert` (per target file);
 - **Isolation:** what was faked/stubbed (FFF fakes, stub headers) and what ran for real, and
-  why;
+  why; any state seam (variable, value, and the test that exceeded 1 s without it) and any
+  brute-force test kept over 1 s; or "no seam, no test over 1 s";
 - the **defects** found (ignored test + characterization), or that you found none;
 - if only **one configuration** was tested (Kconfig/`sdkconfig`/`#ifdef`), which one, and
   that branches of other configurations were not exercised.

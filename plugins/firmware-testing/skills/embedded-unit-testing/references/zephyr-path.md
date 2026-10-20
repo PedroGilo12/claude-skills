@@ -122,7 +122,9 @@ Do not use `ZTEST_EXPECT_FAIL`, and do not leave a failing assert.
 If the logic under test is `static` (not exposed in the `.h`), the idiomatic pattern is for
 the suite to `#include "<module>.c"` directly (compiles the unit inside the test), or the
 module exposes the functions via handle/vtable. Prefer what the module already offers; do
-not change production code just to test it.
+not change production code just to test it. Assigning a `static` *variable* this way (state
+seam) is a separate case. It is a last resort, only under the slow-test rule (SKILL.md,
+Phase 7).
 
 ## Scaffolding a new test project
 

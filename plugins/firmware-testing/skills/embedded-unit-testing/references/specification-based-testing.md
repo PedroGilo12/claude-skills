@@ -54,6 +54,11 @@ For **each function**, apply the three systematic lenses:
 - A string is "basically a list of characters", so **length** partitions: NULL / empty /
   length 1 / length > 1. The same reasoning applies to arrays, buffers and lists of any
   type — in firmware, `count == 0`, `count == 1`, `count == N_MAX`.
+- **"Length > 1" is not one partition when the module stores, copies or allocates from the
+  input.** Split it into typical and **long** (well past any stated size, ≥ 64 when none is
+  stated). A mistake in the size arithmetic (`strlen(s) + 1`, `header + len`) stays invisible
+  for short values and shows only on long ones. No branch depends on the length, so coverage
+  will not point at it.
 - **Implicit business rules** the docs omit but the domain reveals. In the digit-list `add`
   example, the *carry* was not in the docs; knowing arithmetic is what produced the tests
   that found the bug. In firmware this shows up as: saturation/clamp, counter wrap-around,
@@ -142,7 +147,8 @@ all; they are the antidote to a bloated, brittle or irrelevant suite.
   well-defined contracts — each has less to test.
 - **When in doubt, the simplest input.** A realistic but simple value, to ease debugging when
   it fails. Do not use a big integer if a small one works; do not use a 100-char string if 5
-  are enough.
+  are enough. The exception is the **long** length partition above: there, length is the
+  point of the case.
 - **Inputs you don't care about → reasonable values.** For the variable that does not take
   part in the behavior under test, pass any value — but prefer a **realistic** one.
 - **NULL and exceptional cases only when they make sense. Context is king.** Test them

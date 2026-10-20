@@ -41,7 +41,8 @@ host. Replace them with minimal stubs:
   programmable value.
 - `static` functions of the unit are reached through the **real API** (handle/vtable, e.g.
   `motor_ctrl_get_api()->transform(...)`), never by the static name. Do not invent a
-  signature.
+  signature. The only exception is assigning a `static` *variable* through the state seam,
+  when the slow-test rule (SKILL.md, Phase 7) allows it.
 
 ## Unity suite — canonical form + traceability
 
