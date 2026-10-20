@@ -36,7 +36,7 @@ need to name the skill or the framework. It also triggers on Portuguese requests
 
    | Path | Environment | Tooling |
    |---|---|---|
-   | A | Zephyr | twister + ztest + FFF on `native_sim`, twister coverage |
+   | A | Zephyr | twister + ztest + FFF on `native_sim` (or `native_sim/native/64` when the host has no 32-bit toolchain), twister coverage |
    | B | ESP-IDF | ESP-IDF's native Unity in a host build, with gcov/gcovr |
    | C | Anything else | Follows the project's existing unit test framework (Unity, CMock, Ceedling, GoogleTest…). If there is none, it stops and asks which to use |
 
