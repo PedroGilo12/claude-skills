@@ -1,0 +1,1346 @@
+{
+ "target": "net_buf",
+ "label": "iter3-with_skill-run2",
+ "kind": "zephyr",
+ "partial_sources": false,
+ "suites": [
+  "tests/lib/net_buf"
+ ],
+ "cmd": null,
+ "clean": null,
+ "target_ref": "v4.2.1",
+ "target_sha": "64e98eb5278d790f3b3e5279ca8b39b45097bbc0",
+ "repo_commit": "6bf61ef",
+ "mull": "0.34.1",
+ "mutators": [
+  "cxx_all"
+ ],
+ "date": "2026-10-19",
+ "coverage": {
+  "lib/net_buf/buf_simple.c": {
+   "line": [
+    265,
+    265
+   ],
+   "branch": [
+    0,
+    0
+   ],
+   "function": [
+    65,
+    65
+   ]
+  },
+  "lib/net_buf/buf.c": {
+   "line": [
+    343,
+    343
+   ],
+   "branch": [
+    118,
+    120
+   ],
+   "function": [
+    35,
+    35
+   ]
+  }
+ },
+ "mutation": {
+  "lib/net_buf/buf_simple.c": {
+   "killed": 54,
+   "survived": 0,
+   "equivalent": 0,
+   "score": 100.0
+  },
+  "lib/net_buf/buf.c": {
+   "killed": 87,
+   "survived": 9,
+   "equivalent": 5,
+   "score": 90.6
+  }
+ },
+ "notes": {
+  "cmd_rc": [],
+  "excluded_binaries": []
+ },
+ "vs_ref": {
+  "per_file": {
+   "lib/net_buf/buf_simple.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": null,
+     "branch>=min": null,
+     "branch=target": null,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": true
+   },
+   "lib/net_buf/buf.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": true,
+     "branch>=min": true,
+     "branch=target": false,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": true
+   }
+  },
+  "pass": true
+ },
+ "mutants": [
+  {
+   "id": "aaceee9fdd",
+   "file": "lib/net_buf/buf.c",
+   "line": 59,
+   "column": 14,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "4cb8516381",
+   "file": "lib/net_buf/buf.c",
+   "line": 65,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "8ed2d4aa23",
+   "file": "lib/net_buf/buf.c",
+   "line": 67,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "b930fa7e4e",
+   "file": "lib/net_buf/buf.c",
+   "line": 67,
+   "column": 36,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "4283162de6",
+   "file": "lib/net_buf/buf.c",
+   "line": 69,
+   "column": 16,
+   "operator": "cxx_div_to_mul",
+   "status": "killed"
+  },
+  {
+   "id": "a4332a2fee",
+   "file": "lib/net_buf/buf.c",
+   "line": 75,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "9ee8650256",
+   "file": "lib/net_buf/buf.c",
+   "line": 77,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "3897b047a2",
+   "file": "lib/net_buf/buf.c",
+   "line": 77,
+   "column": 40,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "b315666d5b",
+   "file": "lib/net_buf/buf.c",
+   "line": 77,
+   "column": 56,
+   "operator": "cxx_mul_to_div",
+   "status": "killed"
+  },
+  {
+   "id": "2af5eeb568",
+   "file": "lib/net_buf/buf.c",
+   "line": 82,
+   "column": 15,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "c7eaed978e",
+   "file": "lib/net_buf/buf.c",
+   "line": 82,
+   "column": 17,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "e60916e7a2",
+   "file": "lib/net_buf/buf.c",
+   "line": 83,
+   "column": 22,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3d87a87ffc",
+   "file": "lib/net_buf/buf.c",
+   "line": 93,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "2542cad2be",
+   "file": "lib/net_buf/buf.c",
+   "line": 101,
+   "column": 14,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "29f54006cd",
+   "file": "lib/net_buf/buf.c",
+   "line": 114,
+   "column": 46,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "ec5fd8cc87",
+   "file": "lib/net_buf/buf.c",
+   "line": 116,
+   "column": 8,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "15b86fca4a",
+   "file": "lib/net_buf/buf.c",
+   "line": 121,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "0487e07a93",
+   "file": "lib/net_buf/buf.c",
+   "line": 134,
+   "column": 6,
+   "operator": "cxx_pre_dec_to_pre_inc",
+   "status": "killed"
+  },
+  {
+   "id": "1b5c6ed934",
+   "file": "lib/net_buf/buf.c",
+   "line": 139,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "40bcc61c2f",
+   "file": "lib/net_buf/buf.c",
+   "line": 154,
+   "column": 8,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "e79e3578dd",
+   "file": "lib/net_buf/buf.c",
+   "line": 156,
+   "column": 34,
+   "operator": "cxx_mul_to_div",
+   "status": "killed"
+  },
+  {
+   "id": "cca9c3345c",
+   "file": "lib/net_buf/buf.c",
+   "line": 156,
+   "column": 36,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "b22e361629",
+   "file": "lib/net_buf/buf.c",
+   "line": 176,
+   "column": 38,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "d25ac6d48a",
+   "file": "lib/net_buf/buf.c",
+   "line": 181,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "2166615ada",
+   "file": "lib/net_buf/buf.c",
+   "line": 191,
+   "column": 6,
+   "operator": "cxx_pre_dec_to_pre_inc",
+   "status": "survived"
+  },
+  {
+   "id": "d814dc03ac",
+   "file": "lib/net_buf/buf.c",
+   "line": 195,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "survived"
+  },
+  {
+   "id": "8b96b85e49",
+   "file": "lib/net_buf/buf.c",
+   "line": 257,
+   "column": 26,
+   "operator": "cxx_lt_to_ge",
+   "status": "survived"
+  },
+  {
+   "id": "55b95dd108",
+   "file": "lib/net_buf/buf.c",
+   "line": 257,
+   "column": 26,
+   "operator": "cxx_lt_to_le",
+   "status": "equivalent"
+  },
+  {
+   "id": "844608c096",
+   "file": "lib/net_buf/buf.c",
+   "line": 260,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e0ed3d76ab",
+   "file": "lib/net_buf/buf.c",
+   "line": 265,
+   "column": 16,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "53db0432fe",
+   "file": "lib/net_buf/buf.c",
+   "line": 265,
+   "column": 36,
+   "operator": "cxx_post_dec_to_post_inc",
+   "status": "killed"
+  },
+  {
+   "id": "d5373d2fe8",
+   "file": "lib/net_buf/buf.c",
+   "line": 266,
+   "column": 3,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "4d8bdaa296",
+   "file": "lib/net_buf/buf.c",
+   "line": 272,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "076ae522bd",
+   "file": "lib/net_buf/buf.c",
+   "line": 276,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "27e09bb592",
+   "file": "lib/net_buf/buf.c",
+   "line": 276,
+   "column": 18,
+   "operator": "cxx_replace_scalar_call",
+   "status": "survived"
+  },
+  {
+   "id": "8ad5dbe21d",
+   "file": "lib/net_buf/buf.c",
+   "line": 313,
+   "column": 10,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "d370aaf8c4",
+   "file": "lib/net_buf/buf.c",
+   "line": 320,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "c0e51c8b12",
+   "file": "lib/net_buf/buf.c",
+   "line": 331,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "cd38054b48",
+   "file": "lib/net_buf/buf.c",
+   "line": 332,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f1768daf24",
+   "file": "lib/net_buf/buf.c",
+   "line": 334,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "47dc233218",
+   "file": "lib/net_buf/buf.c",
+   "line": 336,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "6465451967",
+   "file": "lib/net_buf/buf.c",
+   "line": 339,
+   "column": 2,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "786d33bc81",
+   "file": "lib/net_buf/buf.c",
+   "line": 341,
+   "column": 17,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "877cc67fed",
+   "file": "lib/net_buf/buf.c",
+   "line": 385,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "3413489eb3",
+   "file": "lib/net_buf/buf.c",
+   "line": 386,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "7324a870b9",
+   "file": "lib/net_buf/buf.c",
+   "line": 401,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "c4bd417a14",
+   "file": "lib/net_buf/buf.c",
+   "line": 402,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "5283f35936",
+   "file": "lib/net_buf/buf.c",
+   "line": 416,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e9cd404f31",
+   "file": "lib/net_buf/buf.c",
+   "line": 443,
+   "column": 7,
+   "operator": "cxx_pre_dec_to_pre_inc",
+   "status": "killed"
+  },
+  {
+   "id": "5bb8a61ff0",
+   "file": "lib/net_buf/buf.c",
+   "line": 443,
+   "column": 18,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "39918f7caf",
+   "file": "lib/net_buf/buf.c",
+   "line": 443,
+   "column": 18,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "35b9b78e40",
+   "file": "lib/net_buf/buf.c",
+   "line": 453,
+   "column": 3,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "be57119bcb",
+   "file": "lib/net_buf/buf.c",
+   "line": 460,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "49a0419d73",
+   "file": "lib/net_buf/buf.c",
+   "line": 473,
+   "column": 10,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "3c1ba87e4b",
+   "file": "lib/net_buf/buf.c",
+   "line": 495,
+   "column": 43,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "f5a647eb70",
+   "file": "lib/net_buf/buf.c",
+   "line": 498,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "66c4aa1c23",
+   "file": "lib/net_buf/buf.c",
+   "line": 499,
+   "column": 15,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "b110f154f7",
+   "file": "lib/net_buf/buf.c",
+   "line": 501,
+   "column": 10,
+   "operator": "cxx_init_const",
+   "status": "survived"
+  },
+  {
+   "id": "926a7175a7",
+   "file": "lib/net_buf/buf.c",
+   "line": 506,
+   "column": 29,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "fbffa1aa8f",
+   "file": "lib/net_buf/buf.c",
+   "line": 506,
+   "column": 29,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "768e49e2ee",
+   "file": "lib/net_buf/buf.c",
+   "line": 507,
+   "column": 4,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "b21cb59565",
+   "file": "lib/net_buf/buf.c",
+   "line": 511,
+   "column": 15,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6654dfa9e4",
+   "file": "lib/net_buf/buf.c",
+   "line": 512,
+   "column": 32,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "ff070d2ffe",
+   "file": "lib/net_buf/buf.c",
+   "line": 529,
+   "column": 10,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "b8f2058f8e",
+   "file": "lib/net_buf/buf.c",
+   "line": 533,
+   "column": 26,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "fcb70bcc6d",
+   "file": "lib/net_buf/buf.c",
+   "line": 533,
+   "column": 26,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "dc384ea470",
+   "file": "lib/net_buf/buf.c",
+   "line": 573,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "4df1d738e2",
+   "file": "lib/net_buf/buf.c",
+   "line": 601,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "1ef140d078",
+   "file": "lib/net_buf/buf.c",
+   "line": 603,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "510958dfd0",
+   "file": "lib/net_buf/buf.c",
+   "line": 616,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "37f9fa76b5",
+   "file": "lib/net_buf/buf.c",
+   "line": 621,
+   "column": 24,
+   "operator": "cxx_ge_to_gt",
+   "status": "equivalent"
+  },
+  {
+   "id": "20b1acc42d",
+   "file": "lib/net_buf/buf.c",
+   "line": 621,
+   "column": 24,
+   "operator": "cxx_ge_to_lt",
+   "status": "killed"
+  },
+  {
+   "id": "cc431080e3",
+   "file": "lib/net_buf/buf.c",
+   "line": 622,
+   "column": 10,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "1c75c5f23f",
+   "file": "lib/net_buf/buf.c",
+   "line": 627,
+   "column": 9,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "e2bab0e2ee",
+   "file": "lib/net_buf/buf.c",
+   "line": 628,
+   "column": 21,
+   "operator": "cxx_gt_to_ge",
+   "status": "equivalent"
+  },
+  {
+   "id": "a45133d796",
+   "file": "lib/net_buf/buf.c",
+   "line": 628,
+   "column": 21,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "c392f835a6",
+   "file": "lib/net_buf/buf.c",
+   "line": 629,
+   "column": 11,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "845f1a255e",
+   "file": "lib/net_buf/buf.c",
+   "line": 632,
+   "column": 10,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "7316814988",
+   "file": "lib/net_buf/buf.c",
+   "line": 635,
+   "column": 7,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "34e6bde450",
+   "file": "lib/net_buf/buf.c",
+   "line": 639,
+   "column": 10,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "12b14f6e06",
+   "file": "lib/net_buf/buf.c",
+   "line": 654,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "0533f590b7",
+   "file": "lib/net_buf/buf.c",
+   "line": 659,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "6cf0ea97aa",
+   "file": "lib/net_buf/buf.c",
+   "line": 662,
+   "column": 7,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "2e7becaffc",
+   "file": "lib/net_buf/buf.c",
+   "line": 663,
+   "column": 13,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "cede0262b3",
+   "file": "lib/net_buf/buf.c",
+   "line": 666,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "fde582543c",
+   "file": "lib/net_buf/buf.c",
+   "line": 679,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "3686a90b25",
+   "file": "lib/net_buf/buf.c",
+   "line": 700,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "624c45ff02",
+   "file": "lib/net_buf/buf.c",
+   "line": 708,
+   "column": 23,
+   "operator": "cxx_ge_to_gt",
+   "status": "equivalent"
+  },
+  {
+   "id": "eb5a1e20fb",
+   "file": "lib/net_buf/buf.c",
+   "line": 708,
+   "column": 23,
+   "operator": "cxx_ge_to_lt",
+   "status": "killed"
+  },
+  {
+   "id": "81a95e0593",
+   "file": "lib/net_buf/buf.c",
+   "line": 709,
+   "column": 10,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "3b03279fd5",
+   "file": "lib/net_buf/buf.c",
+   "line": 713,
+   "column": 20,
+   "operator": "cxx_gt_to_ge",
+   "status": "equivalent"
+  },
+  {
+   "id": "50420678d4",
+   "file": "lib/net_buf/buf.c",
+   "line": 713,
+   "column": 20,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "232a361861",
+   "file": "lib/net_buf/buf.c",
+   "line": 715,
+   "column": 14,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6fea987f83",
+   "file": "lib/net_buf/buf.c",
+   "line": 717,
+   "column": 15,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "d8f90a8bf8",
+   "file": "lib/net_buf/buf.c",
+   "line": 717,
+   "column": 24,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "40bf856ba0",
+   "file": "lib/net_buf/buf.c",
+   "line": 717,
+   "column": 24,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "92d5f71b50",
+   "file": "lib/net_buf/buf.c",
+   "line": 717,
+   "column": 38,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "killed"
+  },
+  {
+   "id": "1021f73591",
+   "file": "lib/net_buf/buf.c",
+   "line": 718,
+   "column": 23,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "5b7c682592",
+   "file": "lib/net_buf/buf.c",
+   "line": 721,
+   "column": 12,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "c18eaaab54",
+   "file": "lib/net_buf/buf.c",
+   "line": 724,
+   "column": 7,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "751f664125",
+   "file": "lib/net_buf/buf.c",
+   "line": 726,
+   "column": 10,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "0351f34b9e",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 37,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "1b96ff5829",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 38,
+   "column": 13,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "827f7fd513",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 64,
+   "column": 11,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "b816d41018",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 83,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f2797727bf",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 92,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "4ca3888146",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 99,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "9ccc3b504b",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 106,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "8781452956",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 113,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "52efbd3cae",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 120,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a1f625a954",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 127,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "b7a9445f66",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 134,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "201f20ff0b",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 141,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a87d1d5be0",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 148,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e1ad1b4adb",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 155,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "54386c9965",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 162,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "9bdcf4a057",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 169,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "69d06898cd",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 178,
+   "column": 11,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "8d21e78d79",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 188,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "451092986a",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 199,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "ca34b9337e",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 210,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "4318d7e7d0",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 247,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f67994c9f5",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 258,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6fafb65b54",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 321,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "561176e7a8",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 332,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "81f29636fe",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 343,
+   "column": 12,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "534a94a1fe",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 344,
+   "column": 11,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "cbcaf72833",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 360,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "25ba9a2204",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 367,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "a142d70e51",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 374,
+   "column": 8,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "e497e975e6",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 381,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "059e5895fd",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 388,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "79c3bef4ab",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 395,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "228d22fccb",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 402,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "590bf0ec82",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 409,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e575023ae8",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 416,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "235874cb73",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 423,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "3934ebe485",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 430,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "b15cd7b4b2",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 437,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "3b9f507feb",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 444,
+   "column": 2,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "4a629b1adc",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 453,
+   "column": 11,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "adb80dac87",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 465,
+   "column": 11,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "1b7db02f6d",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 475,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "bb90ce1337",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 485,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "a903c1da39",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 495,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "a9b3bb5170",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 529,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "76c41cd184",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 539,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "b19f4c874b",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 597,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "aaa9c183e9",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 607,
+   "column": 6,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "8441d7df39",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 615,
+   "column": 19,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "789f7d689a",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 620,
+   "column": 19,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "37db9bd5f9",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 620,
+   "column": 21,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "8e4f5398d4",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 620,
+   "column": 50,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "ae4cc83af2",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 625,
+   "column": 19,
+   "operator": "cxx_sub_to_add",
+   "status": "killed"
+  },
+  {
+   "id": "52f3fb2274",
+   "file": "lib/net_buf/buf_simple.c",
+   "line": 625,
+   "column": 21,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  }
+ ]
+}

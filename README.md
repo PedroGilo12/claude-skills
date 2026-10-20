@@ -88,42 +88,42 @@ the target (`benchmarks/targets.yaml`).
 
 ### Results
 
-**Measured version: 0.2.0**, which iterated to 100% coverage. The "With skill" columns
-combine iterations 1 and 2 of the skill, 5 runs in total. The "Without skill" column is
-Claude with the same prompt and no skill.
+**Measured versions: 0.2.0**, which iterated to 100% coverage (iterations 1 and 2), and
+**0.3.1**, which stops at the 95/95/90 default target (iteration 3, 2 runs per target). The
+"Without skill" column is Claude with the same prompt and no skill.
 
 In each coverage cell, the four numbers are function / line / branch coverage and the
 mutation score. Values are means.
 
 **`lib/net_buf/buf.c`**
 
-| | Human reference | Without skill (3 runs) | With skill, iter. 1 (3 runs) | With skill, iter. 2 (2 runs) |
-|---|---|---|---|---|
-| Function | 86.7% | 99.0% | 100% | 100% |
-| Line | 85.9% | 98.5% | 100% | 100% |
-| Branch | 79.5% | 97.2% | 100% | 100% |
-| **Mutation score** | **73.3%** | **91.4%** | **97.8%** | **94.8%** |
-| Acceptance | — | 3/3 | 3/3 | 2/2 |
+| | Human reference | Without skill (3 runs) | 0.2.0 iter. 1 (3 runs) | 0.2.0 iter. 2 (2 runs) | 0.3.1 iter. 3 (2 runs) |
+|---|---|---|---|---|---|
+| Function | 86.7% | 99.0% | 100% | 100% | 100% |
+| Line | 85.9% | 98.5% | 100% | 100% | 100% |
+| Branch | 79.5% | 97.2% | 100% | 100% | 98.6% |
+| **Mutation score** | **73.3%** | **91.4%** | **97.8%** | **94.8%** | **92.6%** |
+| Acceptance | — | 3/3 | 3/3 | 2/2 | 2/2 |
 
 **`lib/net_buf/buf_simple.c`** (every branch sits inside `__ASSERT`, so there is no branch
 metric)
 
-| | Human reference | Without skill | With skill, iter. 1 | With skill, iter. 2 |
-|---|---|---|---|---|
-| Function | 90.8% | 100% | 100% | 100% |
-| Line | 89.7% | 100% | 100% | 100% |
-| **Mutation score** | **79.6%** | **100%** | **100%** | **100%** |
-| Acceptance | — | 3/3 | 3/3 | 2/2 |
+| | Human reference | Without skill | 0.2.0 iter. 1 | 0.2.0 iter. 2 | 0.3.1 iter. 3 |
+|---|---|---|---|---|---|
+| Function | 90.8% | 100% | 100% | 100% | 100% |
+| Line | 89.7% | 100% | 100% | 100% | 100% |
+| **Mutation score** | **79.6%** | **100%** | **100%** | **100%** | **100%** |
+| Acceptance | — | 3/3 | 3/3 | 2/2 | 2/2 |
 
 **`components/esp_partition/partition.c`**
 
-| | Human reference | Without skill (3 runs) | With skill, iter. 1 (3 runs) | With skill, iter. 2 (2 runs) |
-|---|---|---|---|---|
-| Function | 100% | 100% | 100% | 100% |
-| Line | 89.9% | 95.3% | 100% | 100% |
-| Branch | 70.0% | 88.3% | 100% | 100% |
-| **Mutation score** | **52.4%** | **71.4%** | **93.4%** | **94.5%** |
-| Acceptance | — | **0/3** | 3/3 | 2/2 |
+| | Human reference | Without skill (3 runs) | 0.2.0 iter. 1 (3 runs) | 0.2.0 iter. 2 (2 runs) | 0.3.1 iter. 3 (2 runs) |
+|---|---|---|---|---|---|
+| Function | 100% | 100% | 100% | 100% | 100% |
+| Line | 89.9% | 95.3% | 100% | 100% | 100% |
+| Branch | 70.0% | 88.3% | 100% | 100% | 99.4% |
+| **Mutation score** | **52.4%** | **71.4%** | **93.4%** | **94.5%** | **94.3%** |
+| Acceptance | — | **0/3** | 3/3 | 2/2 | 2/2 |
 
 **Method expectations**, graded by an LLM grader:
 
@@ -131,6 +131,7 @@ metric)
 |---|---|---|
 | Iteration 1 (14 expectations) | 41% | 98% |
 | Iteration 2 (23 stricter expectations, 3 runs graded) | — | 94% |
+| Iteration 3, v0.3.1 (same 23 expectations, 4 runs) | — | 92% |
 
 ### Reading the results
 
@@ -153,15 +154,22 @@ metric)
     `CONFIG_PARTITION_TABLE_MD5`.
   - `esp_partition_verify` does not compare `readonly` and `erase_size`, although its
     documentation says all fields must match.
-- **Cost:** one run takes 9–12 min and 2.3–3.4 M tokens (most are cached context re-reads),
-  about US$ 2.5–3.4 each. These targets are large: 2 files and ~100 functions for net_buf.
-  Smaller modules cost less.
+- **0.3.1 vs 0.2.0:** stopping at 95/95/90 instead of 100% cut cost by ~20% at a small
+  quality price. Every run still passes acceptance. `partition.c` mutation is unchanged
+  (94.3% vs 94.5%). `buf.c` dropped 2–5 points (92.6% vs 94.8–97.8%), still well above the
+  human reference (73.3%) and the no-skill baseline (91.4%).
+- **Cost:** a 0.3.1 run takes ~8 min, 1.5–2.4 M tokens (most are cached context re-reads) and
+  US$ 2.2–2.6. 0.2.0 took 9–12 min, 2.3–3.4 M tokens and US$ 2.5–3.4. These targets are large:
+  2 files and ~100 functions for net_buf. Smaller modules cost less.
 
 ### Known limitations
 
-- **Version 0.3.0 is not benchmarked yet.** It lowered the default target from 100/100/100 to
-  95/95/90 to save tokens on everyday use. Suites will be cheaper and a little smaller, and
-  the mutation score may drop.
+- **Recurring expectation failures in 0.3.1** (4 runs):
+  - the response names the environment but not the path label ("Path A"/"Path B"): 2 runs;
+  - only one branch metric is reported, not raw plus log/assert-excluded: 2 runs;
+  - net_buf suites use no FFF fakes (the kernel runs for real on `native_sim`): 2 of 2 runs.
+    It's an open question whether this expectation fits a module whose only dependencies are
+    kernel primitives.
 - **Validation is pending.** The skill was iterated on `net_buf` and `esp_partition` only.
   The validation targets are ready but have not run yet:
   - `onoff` (Zephyr state machine): reference 92.5% mutation score;
@@ -176,7 +184,7 @@ metric)
 ```bash
 python3 tools/fetch_targets.py                                    # pinned checkouts
 python3 tools/measure.py net_buf                                  # human reference
-python3 tools/bench_run.py 1 with_skill 1 --iteration 2           # one skill run
+python3 tools/bench_run.py 1 with_skill 1 --iteration 3           # one skill run
 python3 tools/measure.py net_buf --root <ws>/zephyr --suite tests/lib/net_buf --label <label>
 python3 tools/trigger_run.py --runs 2                             # trigger evals
 ```
