@@ -173,7 +173,10 @@ def covers_before(lines, i):
     block = "\n".join(lines[max(k, 0):j + 1])
     if "Covers:" not in block:
         return None
-    return set(ID_RE.findall(block.split("Covers:", 1)[1]))
+    body = block.split("Covers:", 1)[1]
+    full = set(ID_RE.findall(body))
+    rest = ID_RE.sub(" ", body)                       # IDs curtos (P1, B2), escopados pelo catálogo acima
+    return full | {"*/" + k for k in re.findall(r"\b[A-Z]{1,3}\d+\b", rest)}
 
 
 def catalog_entries(lines):
@@ -215,7 +218,7 @@ def chk_covers(c):
 
     def matches(cid, e):
         pfx, key = cid.split("/", 1)
-        return key == e[1] and (pfx.lower() == e[0] or pfx.lower() in e[0])
+        return key == e[1] and (pfx == "*" or pfx.lower() == e[0] or pfx.lower() in e[0])
 
     orphan = sorted(cid for cid in covered if not any(matches(cid, e) for e in entries))
     gaps = [e for e in entries if re.search(r"\bgap\b", e[2], re.I)
@@ -300,6 +303,8 @@ def chk_branch_line(c):
     pat = re.compile(r"raw\W*\s*\d+\s*/\s*\d+.*without log/assert\W*\s*\d+\s*/\s*\d+", re.I)
     lines = [l for l in c.final.splitlines() if pat.search(l)]
     if not lines:
+        if re.search(r"\braw\b", c.final, re.I) and re.search(r"without log/assert", c.final, re.I):
+            return None, "as duas métricas aparecem, mas fora do formato 'raw X/Y · without log/assert X/Y'"
         return False, "nenhuma linha 'raw X/Y · without log/assert X/Y' na mensagem final"
     if not re.search(r"compared", c.final, re.I):
         return False, "duas métricas presentes, mas sem dizer qual foi comparada ('compared')"

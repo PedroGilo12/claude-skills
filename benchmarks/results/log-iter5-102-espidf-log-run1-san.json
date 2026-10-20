@@ -1,0 +1,1695 @@
+{
+ "target": "log",
+ "label": "iter5-102-espidf-log-run1-san",
+ "kind": "host",
+ "partial_sources": false,
+ "suites": [
+  "components/log/host_test_unit"
+ ],
+ "cmd": "make -C {suite} clean test",
+ "clean": "make -C {suite} clean",
+ "target_ref": "v5.4.2",
+ "target_sha": "f5c3654a1c2d2a01f7f67def7a0dc48e691f63c0",
+ "repo_commit": "33e2c70",
+ "mull": "0.34.1",
+ "mutators": [
+  "cxx_all"
+ ],
+ "date": "2026-10-20",
+ "coverage": {
+  "components/log/src/buffer/log_buffers.c": {
+   "line": [
+    60,
+    60
+   ],
+   "branch": [
+    23,
+    26
+   ],
+   "function": [
+    7,
+    7
+   ]
+  },
+  "components/log/src/log_level/tag_log_level/tag_log_level.c": {
+   "line": [
+    37,
+    37
+   ],
+   "branch": [
+    15,
+    16
+   ],
+   "function": [
+    5,
+    5
+   ]
+  },
+  "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c": {
+   "line": [
+    32,
+    32
+   ],
+   "branch": [
+    21,
+    28
+   ],
+   "function": [
+    5,
+    5
+   ]
+  },
+  "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c": {
+   "line": [
+    54,
+    54
+   ],
+   "branch": [
+    26,
+    28
+   ],
+   "function": [
+    7,
+    7
+   ]
+  },
+  "components/log/src/util.c": {
+   "line": [
+    22,
+    22
+   ],
+   "branch": [
+    10,
+    12
+   ],
+   "function": [
+    3,
+    3
+   ]
+  }
+ },
+ "mutation": {
+  "components/log/src/buffer/log_buffers.c": {
+   "killed": 63,
+   "survived": 1,
+   "equivalent": 1,
+   "score": 98.4
+  },
+  "components/log/src/log_level/tag_log_level/tag_log_level.c": {
+   "killed": 29,
+   "survived": 0,
+   "equivalent": 0,
+   "score": 100.0
+  },
+  "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c": {
+   "killed": 17,
+   "survived": 0,
+   "equivalent": 0,
+   "score": 100.0
+  },
+  "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c": {
+   "killed": 43,
+   "survived": 3,
+   "equivalent": 3,
+   "score": 93.5
+  },
+  "components/log/src/util.c": {
+   "killed": 23,
+   "survived": 0,
+   "equivalent": 2,
+   "score": 100.0
+  }
+ },
+ "notes": {
+  "cmd_rc": [],
+  "excluded_binaries": []
+ },
+ "vs_ref": {
+  "per_file": {
+   "components/log/src/buffer/log_buffers.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": true,
+     "branch>=min": false,
+     "branch=target": false,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": false
+   },
+   "components/log/src/log_level/tag_log_level/tag_log_level.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": true,
+     "branch>=min": true,
+     "branch=target": false,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": true
+   },
+   "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": true,
+     "branch>=min": false,
+     "branch=target": false,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": false
+   },
+   "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": true,
+     "branch>=min": true,
+     "branch=target": false,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": true
+   },
+   "components/log/src/util.c": {
+    "checks": {
+     "line>=ref": true,
+     "line>=min": true,
+     "line=target": true,
+     "branch>=ref": false,
+     "branch>=min": false,
+     "branch=target": false,
+     "function>=ref": true,
+     "function>=min": true,
+     "function=target": true,
+     "mutation>=ref": true,
+     "mutation>=min": true
+    },
+    "pass": false
+   }
+  },
+  "pass": false
+ },
+ "mutants": [
+  {
+   "id": "f58bbcccdc",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 46,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "1f08aeb37a",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 55,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "80016dd8b8",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 64,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "76513175f8",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 69,
+   "column": 18,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "62cfd1e3f3",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 76,
+   "column": 13,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "8ea7fb72d7",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 76,
+   "column": 40,
+   "operator": "cxx_gt_to_ge",
+   "status": "equivalent"
+  },
+  {
+   "id": "8c84619fad",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 76,
+   "column": 40,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "2d0d94d1bb",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 77,
+   "column": 14,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "701818182f",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 79,
+   "column": 57,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "d0fcaaa777",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 79,
+   "column": 62,
+   "operator": "cxx_div_to_mul",
+   "status": "killed"
+  },
+  {
+   "id": "7111273991",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 83,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "survived"
+  },
+  {
+   "id": "526402554e",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 86,
+   "column": 16,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "e137c8e8df",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 87,
+   "column": 18,
+   "operator": "cxx_sub_assign_to_add_assign",
+   "status": "killed"
+  },
+  {
+   "id": "a2e7384209",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 95,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "767226f739",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 95,
+   "column": 23,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "2b6699eeb3",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 95,
+   "column": 23,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "735af27af8",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 95,
+   "column": 36,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "d3c05f439c",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 96,
+   "column": 20,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "205e9149e6",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 96,
+   "column": 23,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "c23c54a4c3",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 97,
+   "column": 20,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "73943706ed",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 97,
+   "column": 23,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "40dce586c6",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 99,
+   "column": 6,
+   "operator": "cxx_pre_dec_to_pre_inc",
+   "status": "killed"
+  },
+  {
+   "id": "e7a174df1e",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 99,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "8482129fd0",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 107,
+   "column": 26,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "7b946e9ee1",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 113,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "334d3dc589",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 113,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "d320200c35",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 114,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "61b0b15f62",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 114,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "0e9c182ee1",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 115,
+   "column": 16,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "6558e1e3b6",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 115,
+   "column": 19,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "6a2b0bc694",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 116,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "ba598aa438",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 116,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "7ad483ae23",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 117,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "7fc3e537c6",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 117,
+   "column": 23,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "b6333a5b90",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 117,
+   "column": 23,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "c836518a9c",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 117,
+   "column": 42,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "b10ed42200",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 118,
+   "column": 16,
+   "operator": "cxx_and_to_or",
+   "status": "killed"
+  },
+  {
+   "id": "1b79e92258",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 118,
+   "column": 21,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "c51970c1a7",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 119,
+   "column": 24,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "06ab1ac3f9",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 119,
+   "column": 27,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "3289417494",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 121,
+   "column": 20,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "fcac30ffc7",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 121,
+   "column": 23,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "916b7daae3",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 122,
+   "column": 15,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "c72ff4379d",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 122,
+   "column": 15,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "5cce42753f",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 123,
+   "column": 24,
+   "operator": "cxx_add_assign_to_sub_assign",
+   "status": "killed"
+  },
+  {
+   "id": "b4bfe8d2eb",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 123,
+   "column": 27,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "976b688094",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 125,
+   "column": 24,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "0190d69f5d",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 125,
+   "column": 27,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "ff4db2dc28",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 126,
+   "column": 24,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "06f34fc07c",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 126,
+   "column": 27,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "4e426b1375",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 129,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "0c30b271c2",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 129,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "0c0b40ed91",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 130,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "b79343a78a",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 130,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "83c23e3a16",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 131,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "f9b1263249",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 131,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "be40804aec",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 132,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "a10a4a90b4",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 132,
+   "column": 23,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "0a7186e56b",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 132,
+   "column": 23,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "522570d789",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 132,
+   "column": 36,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "d493645384",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 133,
+   "column": 20,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "49df5425ef",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 133,
+   "column": 23,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "795cb1cf0d",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 135,
+   "column": 16,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "50aedc283d",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 135,
+   "column": 19,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "eb2975ba6a",
+   "file": "components/log/src/buffer/log_buffers.c",
+   "line": 136,
+   "column": 17,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "ac09bb47c4",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 82,
+   "column": 19,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "a0e4aebdd6",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 82,
+   "column": 28,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "8f73a5e56f",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 82,
+   "column": 28,
+   "operator": "cxx_lt_to_le",
+   "status": "survived"
+  },
+  {
+   "id": "f2486d8047",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 82,
+   "column": 55,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "killed"
+  },
+  {
+   "id": "97e15a6940",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 86,
+   "column": 13,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "13e2749eed",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 86,
+   "column": 45,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "b646a862c5",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 87,
+   "column": 34,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "915630481c",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 97,
+   "column": 12,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "694b46ecae",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 97,
+   "column": 19,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "174b71dd1f",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 97,
+   "column": 19,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "349993902f",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 97,
+   "column": 46,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "killed"
+  },
+  {
+   "id": "f16a36b1f2",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 101,
+   "column": 32,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "1a282132a6",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 105,
+   "column": 11,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "d854e7fdf9",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 107,
+   "column": 9,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "equivalent"
+  },
+  {
+   "id": "7f37587aaa",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 112,
+   "column": 12,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "53abaadd3e",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 118,
+   "column": 33,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "60039ecd48",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 120,
+   "column": 35,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6391f440a7",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 120,
+   "column": 63,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "2267270749",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 122,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "6a5cf4fecf",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 124,
+   "column": 40,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "273c813f2a",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 125,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "2fbe2f91d0",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 133,
+   "column": 29,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "fd62dfdfb9",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 134,
+   "column": 32,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "27e4a8a135",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 136,
+   "column": 24,
+   "operator": "cxx_assign_const",
+   "status": "equivalent"
+  },
+  {
+   "id": "082c96850f",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 142,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "8c1f943498",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 142,
+   "column": 53,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "74c6532e0d",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 146,
+   "column": 33,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "0058e91c5a",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 146,
+   "column": 33,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "9ca7d57244",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 152,
+   "column": 9,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "killed"
+  },
+  {
+   "id": "b3849231ed",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 162,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "df6ad63253",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 165,
+   "column": 36,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "20dda6bfd1",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 166,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "3f08d9e73d",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 173,
+   "column": 19,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "a608a6b0d6",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 173,
+   "column": 28,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "d22ea2da09",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 173,
+   "column": 28,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "a9fc469de7",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 173,
+   "column": 55,
+   "operator": "cxx_pre_inc_to_pre_dec",
+   "status": "killed"
+  },
+  {
+   "id": "ff05a8cb09",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 174,
+   "column": 35,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "6c263fd4f1",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 176,
+   "column": 32,
+   "operator": "cxx_assign_const",
+   "status": "survived"
+  },
+  {
+   "id": "f856362dc8",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 181,
+   "column": 18,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "6ff3d9b574",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 181,
+   "column": 18,
+   "operator": "cxx_lt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "4892f29879",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 182,
+   "column": 13,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "d6348381ec",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 182,
+   "column": 36,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "e2dadaff9f",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 183,
+   "column": 13,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "6b91f973f0",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 183,
+   "column": 38,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "de6afd1238",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 184,
+   "column": 13,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "e579760cf4",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 184,
+   "column": 56,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "41fcb22597",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 184,
+   "column": 56,
+   "operator": "cxx_lt_to_le",
+   "status": "equivalent"
+  },
+  {
+   "id": "509e420b81",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 185,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "e152f45526",
+   "file": "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c",
+   "line": 186,
+   "column": 15,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "d49a9ca344",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 56,
+   "column": 10,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "17a94c684e",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 58,
+   "column": 16,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "0f80b7e6da",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 58,
+   "column": 40,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "3905529a32",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 71,
+   "column": 13,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "9c466e586a",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 71,
+   "column": 34,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "97d7bccd68",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 72,
+   "column": 20,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "064f4afcc2",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 82,
+   "column": 44,
+   "operator": "cxx_ne_to_eq",
+   "status": "killed"
+  },
+  {
+   "id": "7e1214f578",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 84,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "577a066125",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 91,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "4fd5556387",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 91,
+   "column": 22,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "2db7883343",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 91,
+   "column": 34,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "a8ee858f10",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 92,
+   "column": 12,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "9f8db89f80",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 92,
+   "column": 61,
+   "operator": "cxx_add_to_sub",
+   "status": "killed"
+  },
+  {
+   "id": "50cb6e5512",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 97,
+   "column": 22,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "52ed30c38e",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 108,
+   "column": 13,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "6de4500608",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 108,
+   "column": 34,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "bfa069ab24",
+   "file": "components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c",
+   "line": 110,
+   "column": 23,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "4e33c6a2e2",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 35,
+   "column": 13,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "660572a07d",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 39,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "374048c37b",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 41,
+   "column": 9,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "8093f8fbdc",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 41,
+   "column": 26,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "625d430114",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 42,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "b9b1db1e67",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 43,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "fbe246267d",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 45,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "7dd57c828d",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 48,
+   "column": 38,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "d3123e355d",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 48,
+   "column": 48,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "59974d8d4f",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 51,
+   "column": 13,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "b23f39f05a",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 55,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "4a76728802",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 60,
+   "column": 21,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "8089381c4b",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 60,
+   "column": 37,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "8bc311d960",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 61,
+   "column": 13,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "278ba5b0c5",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 65,
+   "column": 13,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "a978e4a017",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 65,
+   "column": 41,
+   "operator": "cxx_eq_to_ne",
+   "status": "killed"
+  },
+  {
+   "id": "55f704942b",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 69,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "5a2f1ffc96",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 72,
+   "column": 10,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "c7e817ecfe",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 72,
+   "column": 24,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "2cede8d652",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 74,
+   "column": 9,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "339471aded",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 75,
+   "column": 9,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "2ed19dd586",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 78,
+   "column": 5,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "5dbf978d92",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 80,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "9ba689366f",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 90,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "015dab981c",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 92,
+   "column": 5,
+   "operator": "cxx_remove_void_call",
+   "status": "killed"
+  },
+  {
+   "id": "8761f3e765",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 100,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "0445fe2b76",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 102,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "c343f4fc50",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 110,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "cf46414216",
+   "file": "components/log/src/log_level/tag_log_level/tag_log_level.c",
+   "line": 112,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "55df6f6350",
+   "file": "components/log/src/util.c",
+   "line": 12,
+   "column": 9,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "ce8abd2f46",
+   "file": "components/log/src/util.c",
+   "line": 16,
+   "column": 13,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "4e23e7515c",
+   "file": "components/log/src/util.c",
+   "line": 16,
+   "column": 16,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "16eb8c4550",
+   "file": "components/log/src/util.c",
+   "line": 16,
+   "column": 29,
+   "operator": "cxx_rem_to_div",
+   "status": "killed"
+  },
+  {
+   "id": "41eaf09fbc",
+   "file": "components/log/src/util.c",
+   "line": 17,
+   "column": 13,
+   "operator": "cxx_div_assign_to_mul_assign",
+   "status": "killed"
+  },
+  {
+   "id": "bf943faa64",
+   "file": "components/log/src/util.c",
+   "line": 18,
+   "column": 15,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "017bb2c536",
+   "file": "components/log/src/util.c",
+   "line": 24,
+   "column": 16,
+   "operator": "cxx_gt_to_ge",
+   "status": "equivalent"
+  },
+  {
+   "id": "ab103150a8",
+   "file": "components/log/src/util.c",
+   "line": 24,
+   "column": 16,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "826eff0fd3",
+   "file": "components/log/src/util.c",
+   "line": 24,
+   "column": 27,
+   "operator": "cxx_gt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "80d134f193",
+   "file": "components/log/src/util.c",
+   "line": 24,
+   "column": 27,
+   "operator": "cxx_gt_to_le",
+   "status": "killed"
+  },
+  {
+   "id": "81ce0ee003",
+   "file": "components/log/src/util.c",
+   "line": 25,
+   "column": 13,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "cb97fa2065",
+   "file": "components/log/src/util.c",
+   "line": 25,
+   "column": 16,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f87e67fe31",
+   "file": "components/log/src/util.c",
+   "line": 26,
+   "column": 15,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "cbb44e390d",
+   "file": "components/log/src/util.c",
+   "line": 28,
+   "column": 10,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f930ec4ca7",
+   "file": "components/log/src/util.c",
+   "line": 33,
+   "column": 5,
+   "operator": "cxx_pre_dec_to_pre_inc",
+   "status": "killed"
+  },
+  {
+   "id": "7c5f160827",
+   "file": "components/log/src/util.c",
+   "line": 38,
+   "column": 21,
+   "operator": "cxx_lt_to_ge",
+   "status": "killed"
+  },
+  {
+   "id": "afa8fbc218",
+   "file": "components/log/src/util.c",
+   "line": 38,
+   "column": 21,
+   "operator": "cxx_lt_to_le",
+   "status": "equivalent"
+  },
+  {
+   "id": "722fcf10ce",
+   "file": "components/log/src/util.c",
+   "line": 39,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "7e4b15a352",
+   "file": "components/log/src/util.c",
+   "line": 40,
+   "column": 14,
+   "operator": "cxx_init_const",
+   "status": "killed"
+  },
+  {
+   "id": "6c020309ac",
+   "file": "components/log/src/util.c",
+   "line": 41,
+   "column": 13,
+   "operator": "cxx_post_dec_to_post_inc",
+   "status": "killed"
+  },
+  {
+   "id": "2e441f660b",
+   "file": "components/log/src/util.c",
+   "line": 41,
+   "column": 16,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "385712c317",
+   "file": "components/log/src/util.c",
+   "line": 42,
+   "column": 18,
+   "operator": "cxx_post_inc_to_post_dec",
+   "status": "killed"
+  },
+  {
+   "id": "4f3fe6c6b8",
+   "file": "components/log/src/util.c",
+   "line": 42,
+   "column": 21,
+   "operator": "cxx_assign_const",
+   "status": "killed"
+  },
+  {
+   "id": "f44d63af34",
+   "file": "components/log/src/util.c",
+   "line": 52,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  },
+  {
+   "id": "1e251d745a",
+   "file": "components/log/src/util.c",
+   "line": 57,
+   "column": 12,
+   "operator": "cxx_replace_scalar_call",
+   "status": "killed"
+  }
+ ],
+ "note": "Medição suplementar com ASan+UBSan (make test da skill). A oficial é a sem sanitizers: a instrumentação deles soma branches no gcov."
+}

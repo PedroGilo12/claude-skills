@@ -100,6 +100,8 @@ iteration-4 numbers below are still valid results for 0.3.2.
 - **0.2.0** iterated to 100% coverage (iterations 1 and 2).
 - **0.3.1** stops at the 95/95/90 default target (iteration 3, 2 runs per target).
 - **0.3.2** fixes the final-output gaps and was run on the validation targets (iteration 4).
+- **0.3.3** adds the slow-test rule (1 s per test, state seam as last resort) and the
+  input-length partition. Iteration 5: 2 runs on `log`, 1 on `net_buf`.
 
 The "Without skill" column is Claude with the same prompt and no skill.
 
@@ -108,23 +110,23 @@ mutation score. Values are means.
 
 **`lib/net_buf/buf.c`**
 
-| | Human reference | Without skill (3 runs) | 0.2.0 iter. 1 (3 runs) | 0.2.0 iter. 2 (2 runs) | 0.3.1 iter. 3 (2 runs) |
-|---|---|---|---|---|---|
-| Function | 86.7% | 99.0% | 100% | 100% | 100% |
-| Line | 85.9% | 98.5% | 100% | 100% | 100% |
-| Branch | 79.5% | 97.2% | 100% | 100% | 98.6% |
-| **Mutation score** | **73.3%** | **91.4%** | **97.8%** | **94.8%** | **92.6%** |
-| Acceptance | — | 3/3 | 3/3 | 2/2 | 2/2 |
+| | Human reference | Without skill (3 runs) | 0.2.0 iter. 1 (3 runs) | 0.2.0 iter. 2 (2 runs) | 0.3.1 iter. 3 (2 runs) | 0.3.3 iter. 5 (1 run) |
+|---|---|---|---|---|---|---|
+| Function | 86.7% | 99.0% | 100% | 100% | 100% | 100% |
+| Line | 85.9% | 98.5% | 100% | 100% | 100% | 100% |
+| Branch | 79.5% | 97.2% | 100% | 100% | 98.6% | 100% |
+| **Mutation score** | **73.3%** | **91.4%** | **97.8%** | **94.8%** | **92.6%** | **95.8%** |
+| Acceptance | — | 3/3 | 3/3 | 2/2 | 2/2 | 1/1 |
 
 **`lib/net_buf/buf_simple.c`** (every branch sits inside `__ASSERT`, so there is no branch
 metric)
 
-| | Human reference | Without skill | 0.2.0 iter. 1 | 0.2.0 iter. 2 | 0.3.1 iter. 3 |
-|---|---|---|---|---|---|
-| Function | 90.8% | 100% | 100% | 100% | 100% |
-| Line | 89.7% | 100% | 100% | 100% | 100% |
-| **Mutation score** | **79.6%** | **100%** | **100%** | **100%** | **100%** |
-| Acceptance | — | 3/3 | 3/3 | 2/2 | 2/2 |
+| | Human reference | Without skill | 0.2.0 iter. 1 | 0.2.0 iter. 2 | 0.3.1 iter. 3 | 0.3.3 iter. 5 |
+|---|---|---|---|---|---|---|
+| Function | 90.8% | 100% | 100% | 100% | 100% | 100% |
+| Line | 89.7% | 100% | 100% | 100% | 100% | 100% |
+| **Mutation score** | **79.6%** | **100%** | **100%** | **100%** | **100%** | **100%** |
+| Acceptance | — | 3/3 | 3/3 | 2/2 | 2/2 | 1/1 |
 
 **`components/esp_partition/partition.c`**
 
@@ -144,6 +146,12 @@ metric)
 | Iteration 2 (23 stricter expectations, 3 runs graded) | — | 94% |
 | Iteration 3, v0.3.1 (same 23 expectations, 4 runs) | — | 92% |
 | Iteration 4, v0.3.2, validation (23 expectations, 6 runs) | — | 93% (96% of the 19 qualitative ones) |
+| Iteration 5, v0.3.3, development (24 expectations, 3 runs, new grader) | — | 89% (64/72) |
+
+From iteration 5 on, the grader runs outside the skill-creator: a script
+(`tools/check_run.py`) decides the mechanical expectations, and Sonnet (`tools/grade_qual.py`)
+only the qualitative ones. The script is stricter than the old LLM grader: the path label
+must appear before the first file write, not only in the final output.
 
 #### Validation (v0.3.2, iteration 4)
 
@@ -175,6 +183,31 @@ metric)
 - Run 1 put the overflow test in the same binary as every other heap test, so
   `log_binary_heap.c` gets no mutants at all and the measurement is refused.
 - Every file beats its human reference on every metric. Two files miss the 80% mutation floor.
+
+#### Development (v0.3.3, iteration 5): `log`
+
+2 runs, both pass acceptance. Coverage is 100% line / branch / function on all 5 files.
+
+| File | Reference mutation | 0.3.2 run 2 | 0.3.3 run 1 | 0.3.3 run 2 |
+|---|---|---|---|---|
+| `buffer/log_buffers.c` | 30.4% | 97.8% | 100% | 97.8% |
+| `tag_log_level.c` | 68.0% | 100% | 100% | 100% |
+| `linked_list/log_linked_list.c` | 17.6% | 76.5% ❌ | 94.1% | 100% |
+| `cache/log_binary_heap.c` | 25.5% | ≥ 76.6% ❌ | 91.5% | 89.4% |
+| `util.c` | 100% | 100% | 100% | 100% |
+
+- **Slow tests:** both runs first wrote the overflow test by brute force, measured it
+  (36.8 s and ~22 s), and only then replaced it with a state seam that assigns
+  `s_log_cache_max_generation`, declared in the final output. No test takes more than 1 s,
+  and no binary is left out of mutation.
+- **Overflow mutants:** 7 of 9 killed in both runs. The two survivors (L173, L176) write past
+  the array or only show up on a *second* overflow. L173 is killed when the suite is built with
+  ASan (supplementary measurement `log-iter5-102-espidf-log-run1-san.json`); the official
+  measurement is without sanitizers, which add gcov branches.
+- **Input length:** the linked-list mutants that survived 0.3.2 because every tag was short
+  are now killed, except one that needs a memory oracle (killed in run 2 and with ASan).
+- **`net_buf`:** no seam, and the slowest test takes 0.03 s. The 1.5 s test from iteration 2
+  is gone.
 
 ### Reading the results
 
@@ -212,7 +245,9 @@ metric)
 - **Cost:** a 0.3.1 run takes ~8 min, 1.5–2.4 M tokens (most are cached context re-reads) and
   US$ 2.2–2.6. 0.2.0 took 9–12 min, 2.3–3.4 M tokens and US$ 2.5–3.4. These targets are large:
   2 files and ~100 functions for net_buf. Smaller modules cost less: a 0.3.2 run on `onoff`
-  takes ~4.5 min and US$ 1.4–1.5, and one on `log` takes ~7 min and ~US$ 2.
+  takes ~4.5 min and US$ 1.4–1.5, and one on `log` takes ~7 min and ~US$ 2. In iteration 5
+  (0.3.3), `log` took 8–9 min and US$ 2.2–2.4 per run, `net_buf` 12 min and US$ 3.3; the
+  new grader added US$ 0.77 for the 3 runs.
 
 ### Known limitations
 
@@ -221,13 +256,21 @@ metric)
   lines of the final output, and all three passed in the 6 validation runs. The FFF
   expectation now allows kernel primitives to run for real on `native_sim` when the response
   says so. In 0.3.1, net_buf ran the kernel for real in 2 of 2 runs.
+- **Fixed in 0.3.3.** Slow boundary tests: the skill no longer keeps a test that loops ~2^29
+  times to reach a counter overflow. It keeps each test under 1 s and uses a state seam only
+  after the public API and the build configuration can't reach the state.
+- **Open in 0.3.3** (iteration 5):
+  - **Path label too late.** All 3 runs state `Path A`/`Path B` only in the final output,
+    not before the first file write.
+  - **`Isolation:` line.** 1 of 3 runs reported the seam and the fakes under other headings
+    instead of the mandatory line.
+  - **FFF expectation.** The `net_buf` run faked nothing and forced failures with real pools
+    sized to fail, and said so. The expectation still asks for a fake, so it may be too strict.
 - **Open in 0.3.2:**
-  - **Slow boundary tests.** Nothing stops the skill from writing a test that loops ~2^29
-    times to reach a counter overflow. Such a test makes mutation testing impractical.
   - **Undocumented return codes.** The skill doesn't define whether an undocumented return
     code is a defect or a documentation gap, and the onoff runs disagreed on it.
   - **`Covers:` precision.** 2 of 6 runs had one annotation that claimed a partition its
-    test doesn't exercise.
+    test doesn't exercise. Still seen in 2 of 3 runs of iteration 5.
   - **Progress-message language.** 1 Portuguese run sent one progress message in Portuguese.
     All code and the final output were in English.
   - **Raw coverage file location.** The raw branch command writes `coverage-raw.txt` at the
@@ -244,6 +287,9 @@ python3 tools/bench_run.py 1 with_skill 1 --iteration 3           # one skill ru
 python3 tools/measure.py net_buf --root <ws>/zephyr --suite tests/lib/net_buf --label <label>
 python3 tools/trigger_run.py --runs 2                             # trigger evals
 ```
+
+Grading a run (script, Sonnet, merge) and the iteration summary are described in
+[`tools/README.md`](tools/README.md#fluxo-de-iteração-sem-skill-creator).
 
 Details are in [`tools/README.md`](tools/README.md). The measurement results, with status per
 mutant, are in `benchmarks/results/`. Run transcripts and workspaces stay out of git.

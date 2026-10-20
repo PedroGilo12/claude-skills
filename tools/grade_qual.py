@@ -38,9 +38,9 @@ SCHEMA = {
     "properties": {
         "expectations": {"type": "array", "items": {
             "type": "object",
-            "properties": {"text": {"type": "string"}, "passed": {"type": "boolean"},
+            "properties": {"n": {"type": "integer"}, "passed": {"type": "boolean"},
                            "evidence": {"type": "string"}},
-            "required": ["text", "passed", "evidence"]}},
+            "required": ["n", "passed", "evidence"]}},
         "eval_feedback": {"type": "string"},
     },
     "required": ["expectations", "eval_feedback"],
@@ -111,7 +111,7 @@ def main():
     for p, text in suite_sources(run):
         parts.append(f"\n# Suite file: {p}\n```\n{text}\n```")
     parts.append("\n# Condensed transcript\n" + (run / "transcript.md").read_text())
-    parts.append("\nReturn one entry per expectation above, with `text` copied exactly.")
+    parts.append("\nReturn one entry per expectation above; `n` is its number in the list.")
     prompt = "\n".join(parts)
 
     env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}   # permite claude -p aninhado
@@ -125,11 +125,13 @@ def main():
     if res.get("is_error") or not res.get("structured_output"):
         sys.exit(f"grader falhou: {res.get('result', '')[:500]}")
     out = res["structured_output"]
-    asked = {t for t, _ in todo}
-    got = {e["text"] for e in out["expectations"]}
-    if asked - got:
-        sys.exit(f"grader não respondeu: {sorted(asked - got)}")
-    out["expectations"] = [e for e in out["expectations"] if e["text"] in asked]
+    # O LLM devolve o número da expectation; o texto vem da lista, sem depender de cópia literal.
+    by_n = {e["n"]: e for e in out["expectations"] if 1 <= e["n"] <= len(todo)}
+    missing = [todo[i - 1][0] for i in range(1, len(todo) + 1) if i not in by_n]
+    if missing:
+        sys.exit(f"grader não respondeu: {missing}")
+    out["expectations"] = [{"text": todo[i - 1][0], "passed": by_n[i]["passed"], "evidence": by_n[i]["evidence"]}
+                           for i in range(1, len(todo) + 1)]
     (run / "grading-qual.json").write_text(json.dumps(out, ensure_ascii=False, indent=2))
     u = res.get("usage") or {}
     cost = {"model": MODEL, "cost_usd": round(res.get("total_cost_usd") or 0, 4), "prompt_chars": len(prompt),
