@@ -124,14 +124,16 @@ If the target does **not** yet have a test project, generate the minimal structu
 tests/<module>/
 ├── CMakeLists.txt        # links the suite + the .c under test + the fakes
 ├── prj.conf              # CONFIG_ZTEST=y, CONFIG_ASSERT=y (coverage: let twister inject it)
-├── testcase.yaml         # platform_allow: native_sim; tags
+├── testcase.yaml         # platform_allow: native_sim, native_sim/native/64; tags
 └── src/
     └── test_<module>.c   # the suite
 ```
 
 Points to watch when filling in the templates:
 - **native_sim** is the target board (runs on the host, fast, and is where coverage makes
-  sense).
+  sense). Plain `native_sim` is 32-bit and needs `gcc-multilib`; `native_sim/native/64` is
+  the same board in 64 bits. Allow both in `testcase.yaml` and pick at run time (step 3
+  below). Do not hard-code 32-bit sizes (`sizeof(void *) == 4`) in assertions.
 - In `CMakeLists.txt`, add **the `.c` under test** to `target_sources` (so gcov measures the
   real unit) together with the suite; make sure the module's includes are there
   (`target_include_directories`).
@@ -157,12 +159,17 @@ export ZEPHYR_BASE="$(west topdir 2>/dev/null)/zephyr"    # or the repo's deps/z
 [ -d "$ZEPHYR_BASE" ] || export ZEPHYR_BASE="$(pwd)/deps/zephyr"
 export ZEPHYR_TOOLCHAIN_VARIANT=host
 
-# 3) run twister (--coverage-basedir points at the root of the unit under test, which lives
+# 3) pick the platform: 32-bit native_sim only if the host can link -m32 (gcc-multilib),
+#    otherwise the 64-bit variant. Do not ask the user to install anything for this.
+echo 'int main(void){return 0;}' | gcc -m32 -x c - -o /dev/null 2>/dev/null \
+  && PLAT=native_sim || PLAT=native_sim/native/64
+
+# 4) run twister (--coverage-basedir points at the root of the unit under test, which lives
 #    OUTSIDE ZEPHYR_BASE; without it gcov does not match the files and coverage is empty):
-west twister --coverage -p native_sim -T <suite_path> \
+west twister --coverage -p $PLAT -T <suite_path> \
      --coverage-basedir <root_of_module_under_test>
 # fallback if `west` still does not resolve, but the Zephyr tree exists:
-python3 "$ZEPHYR_BASE/scripts/twister" --coverage -p native_sim -T <suite_path> \
+python3 "$ZEPHYR_BASE/scripts/twister" --coverage -p $PLAT -T <suite_path> \
      --coverage-basedir <root_of_module_under_test>
 ```
 
@@ -192,11 +199,13 @@ Common troubleshooting (real gotchas already observed):
   twister. Do not use it (the ZTEST_SUITE/ZTEST API is already the default).
 - **`CONFIG_COVERAGE_GCOV=y` in prj.conf** conflicts with native_sim's
   `COVERAGE_NATIVE_GCOV` → let twister's `--coverage` inject the config.
+- **`cannot find crti.o` / `Scrt1.o`** at link time → no `gcc-multilib`; use
+  `-p native_sim/native/64` (step 3 above).
 - **A custom devicetree binding** requires a **known vendor prefix** (`vnd,` or `zephyr,`),
   not an invented one (`test,`) → the build fails DT validation.
 - **`ZEPHYR_TOOLCHAIN_VARIANT` not set** breaks twister's coverage tool → export `=host`
   (step 2 above).
-- Suite not found → check `platform_allow: native_sim` in `testcase.yaml` and that `-T`
+- Suite not found → check that `platform_allow` in `testcase.yaml` lists the `-p` platform and that `-T`
   points at the folder containing `testcase.yaml`.
 - Duplicate symbol at link time → the `.c` under test and a fake define the same function;
   keep fakes only for external dependencies, never for the unit under test.

@@ -249,7 +249,8 @@ Only after exhausting this search is it honest to report that execution could no
 
 Run the path's tool and **point to the artifacts it generates** (do not write a report):
 
-- **Path A (Zephyr):** `west twister --coverage -p native_sim -T <suite_path>`.
+- **Path A (Zephyr):** `west twister --coverage -p native_sim -T <suite_path>`, or
+  `-p native_sim/native/64` when the host has no `gcc-multilib` (see `zephyr-path.md`).
   Artifacts: `twister-out/coverage/index.html`, `twister-out/coverage.json`,
   `twister-out/twister.xml`, `twister-out/twister.json`.
 - **Path B (ESP-IDF):** host build with Unity + `gcov`/`gcovr` (see `espidf-path.md`);
