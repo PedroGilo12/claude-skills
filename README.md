@@ -161,14 +161,14 @@ metric)
 | `buffer/log_buffers.c` | 30.4% | 100 / 100 / 100% | 97.8% ✅ |
 | `tag_log_level.c` | 68.0% | 100 / 100 / 100% | 100% ✅ |
 | `linked_list/log_linked_list.c` | 17.6% | 100 / 100 / 100% | 76.5% ❌ (< 80%) |
-| `cache/log_binary_heap.c` | 24.0% | 100 / 100 / 100% | ≥ 72.0% ❌ (< 80%) |
+| `cache/log_binary_heap.c` | 25.5% | 100 / 100 / 100% | ≥ 76.6% ❌ (< 80%) |
 | `util.c` | 100% | 100 / 100 / 100% | 100% ✅ |
 
 - Both runs wrote tests for the 29-bit generation counter overflow of the binary-heap cache.
   These tests make ~2^29 API calls and take 11–22 s in a normal build. In the
   mull-instrumented build they time out even at 60 s, so they can't be mutation-tested.
 - Run 2 put the two overflow tests in separate binaries. Those binaries are left out of
-  mutation, so mutants only they would kill count as survived, and 72.0% is a lower bound.
+  mutation, so mutants only they would kill count as survived, and 76.6% is a lower bound.
 - Run 1 put the overflow test in the same binary as every other heap test, so
   `log_binary_heap.c` gets no mutants at all and the measurement is refused.
 - Every file beats its human reference on every metric. Two files miss the 80% mutation floor.

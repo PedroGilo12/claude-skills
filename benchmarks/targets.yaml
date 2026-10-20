@@ -107,7 +107,7 @@ targets:
       components/log/src/buffer/log_buffers.c:                                  {killed: 14, survived: 32, equivalent: 1, score: 30.4}
       components/log/src/log_level/tag_log_level/tag_log_level.c:               {killed: 17, survived: 8, equivalent: 0, score: 68.0}
       components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c: {killed: 3, survived: 14, equivalent: 0, score: 17.6}
-      components/log/src/log_level/tag_log_level/cache/log_binary_heap.c:       {killed: 12, survived: 38, equivalent: 0, score: 24.0}
+      components/log/src/log_level/tag_log_level/cache/log_binary_heap.c:       {killed: 12, survived: 35, equivalent: 3, score: 25.5}
       components/log/src/util.c:                                                {killed: 18, survived: 0, equivalent: 2, score: 100.0}
 
 # Regras por checkout. branch_exclude: branches em linhas de log/assert não contam

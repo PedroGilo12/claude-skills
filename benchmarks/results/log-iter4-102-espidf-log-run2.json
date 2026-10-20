@@ -109,9 +109,9 @@
   },
   "components/log/src/log_level/tag_log_level/cache/log_binary_heap.c": {
    "killed": 36,
-   "survived": 14,
-   "equivalent": 0,
-   "score": 72.0
+   "survived": 11,
+   "equivalent": 3,
+   "score": 76.6
   },
   "components/log/src/util.c": {
    "killed": 18,
@@ -699,7 +699,7 @@
    "line": 107,
    "column": 9,
    "operator": "cxx_pre_inc_to_pre_dec",
-   "status": "survived"
+   "status": "equivalent"
   },
   {
    "id": "7f37587aaa",
@@ -779,7 +779,7 @@
    "line": 136,
    "column": 24,
    "operator": "cxx_assign_const",
-   "status": "survived"
+   "status": "equivalent"
   },
   {
    "id": "082c96850f",
@@ -971,7 +971,7 @@
    "line": 184,
    "column": 56,
    "operator": "cxx_lt_to_le",
-   "status": "survived"
+   "status": "equivalent"
   },
   {
    "id": "509e420b81",

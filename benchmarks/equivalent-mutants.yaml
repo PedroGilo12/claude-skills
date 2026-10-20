@@ -43,3 +43,30 @@ log:
   8ea7fb72d7: >-
     log_buffers.c:76 `buff_len > BYTES_PER_LINE ? BYTES_PER_LINE : buff_len` -> `>=`. Com
     buff_len == BYTES_PER_LINE os dois ramos dão o mesmo valor.
+  # Observação para a futura skill de mutação: os dois abaixo são equivalentes porque o código
+  # mutado não tem efeito nenhum. s_log_cache_misses é `static`, só é escrito (L107, L136) e
+  # nunca é lido nem exposto, nem por getter nem por log. Um mutante equivalente desse tipo
+  # não indica uma lacuna nos testes, e sim código morto ou instrumentação que perdeu o
+  # consumidor. Se o código não muda nada, por que ele existe? A skill de mutação deve
+  # separar esse caso ("equivalente por código sem efeito": reportar como achado sobre o
+  # código, candidato a remoção ou a ser exposto) do equivalente comum, em que o código tem
+  # efeito mas o mutante dá o mesmo resultado (ex.: o L184 abaixo e os de util.c acima).
+  # Outra observação para a skill de mutação (não é equivalente, não entra na lista):
+  # log_binary_heap.c:134 `s_log_cache_max_generation = 0` -> constante, no esp_log_cache_clean.
+  # O valor inicial só antecipa o overflow. A única forma de observá-lo pela API é a força
+  # bruta (~2^29 chamadas). Um teste com state seam sobrescreve essa variável logo depois do
+  # clean e apaga o efeito do mutante. Ele sobrevive por decisão de projeto (seam só ajusta,
+  # nunca lê estado interno), e não por lacuna na partição.
+  d854e7fdf9: >-
+    log_binary_heap.c:107 (esp_log_cache_get_level) `++s_log_cache_misses` -> `--`.
+    s_log_cache_misses é static e nunca é lido (só aparece em L72, L107, L136); unsigned, o
+    decremento não tem UB. Nenhuma saída muda.
+  27e4a8a135: >-
+    log_binary_heap.c:136 (esp_log_cache_clean) `s_log_cache_misses = 0` -> constante. Mesmo
+    contador nunca lido; o valor atribuído não é observável.
+  41fcb22597: >-
+    log_binary_heap.c:184 (heap_bubble_down) `left.generation < right.generation` -> `<=`. Só
+    difere com gerações iguais, que não ocorrem: bubble_down só roda com o cache cheio
+    (count == TAG_CACHE_SIZE), quando todos os slots foram escritos depois do último clean com
+    gerações tiradas de s_log_cache_max_generation++ (únicas, < MAX_GENERATION); o
+    fix_cache_generation_overflow renumera com 0..count-1 e retoma em count, também únicas.
