@@ -115,8 +115,13 @@ flow). For the self-contained host build:
 gcc -std=c11 --coverage -DUNITY_INCLUDE_DOUBLE \
     -I<module inc> -Istubs -Ivendor/unity \
     <module>.c test_<module>.c vendor/unity/unity.c -o test_<module> && ./test_<module>
-gcovr -r . --html-details -o coverage.html    # or --xml for CI
+# raw branch number, then the one compared against the target (log/assert branches out):
+gcovr -r . --filter '<module>.c' --txt-metric branch --txt
+gcovr -r . --filter '<module>.c' --exclude-branches-by-pattern '(^\s*ESP_LOG[EWIDV]\(.*)|(^\s*assert\(.*)' \
+      --txt-metric branch --txt --html-details -o coverage.html    # or --xml for CI
 ```
+
+Report both numbers. The second one is what counts against the target.
 
 Point to the artifacts the tool generates (`coverage.html`/`.xml`, the Unity runner output)
 — do not write a report of your own.

@@ -98,9 +98,10 @@ never count in any path.
    `references/non-zephyr-path.md`.
 
 **State in the response text** (not only in your reasoning), before moving on, the chosen
-path and the **concrete signals** that justify it, with file and what you found — e.g.
+path **with its literal label** (`Path A`, `Path B` or `Path C` — not just "this is Zephyr")
+and the **concrete signals** that justify it, with file and what you found — e.g.
 "Path A (Zephyr): `zephyr/west.yml`, `find_package(Zephyr)` in `tests/.../CMakeLists.txt`,
-`ZTEST_SUITE` suites in `tests/lib/`."
+`ZTEST_SUITE` suites in `tests/lib/`." Repeat the same line in the final output.
 
 ---
 
@@ -119,7 +120,8 @@ backlash) that you infer. Those implicit rules are where bugs hide.
 
 Read the whole `.c`/`.h` and build the map of **dependencies to isolate**: HAL, drivers,
 kernel/RTOS, I/O, time, calls into other modules. Each dependency becomes a fake/mock in
-Phase 6. Also identify how the real logic is reached (direct public API, or `static`
+Phase 6, except kernel primitives that run deterministically on the host (see the path
+file). Fake those too when a test needs to control them (failure, timeout, time). Also identify how the real logic is reached (direct public API, or `static`
 functions via handle/vtable — call them through the real API, never invent a signature).
 
 ## Phase 3 — Identify the partitions (the most important step)
@@ -278,8 +280,10 @@ these justifications allow stopping below the target.
 
 **Which branch metric counts for the target:** the metric **without** the branches on
 log/assert lines (`LOG_*`/`__ASSERT*` in Zephyr, which twister already excludes;
-`ESP_LOG*`/`assert` in ESP-IDF, via `gcovr --exclude-lines-by-pattern`). Report both — raw
-and without log/assert — saying which one you compared against the target.
+`ESP_LOG*`/`assert` in ESP-IDF, via `gcovr --exclude-branches-by-pattern`). **Measure and
+report both numbers** — raw and without log/assert — saying which one you compared against
+the target. Twister only prints the excluded one; the path files show the extra `gcovr` call
+that gives the raw one. "Twister already excludes them" is not a raw number.
 
 **Pace:** iterate in **blocks of 2 iterations**. After every 2 iterations, if reachable gaps
 remain (coverage below the target without justification), **report the current state** (tool numbers +
@@ -295,7 +299,15 @@ left out and why) and which
 catalog gaps (if any) remain — but **without** rewriting the results into a report of your
 own.
 
-Also state, in one line each:
+Also state, in one line each — **every line is mandatory**, even when it repeats what you
+said earlier:
+- **Path:** the literal label and its signals (`Path A (Zephyr): <file> — <what was found>`);
+- **Environment:** the venv path used, or "no venv in `<dirs checked>`", plus the toolchain
+  setup (`ZEPHYR_BASE`/platform, or `export.sh`/plain `gcc`);
+- **Branch coverage:** `raw X/Y (Z%) · without log/assert X/Y (Z%) — compared: without
+  log/assert` (per target file);
+- **Isolation:** what was faked/stubbed (FFF fakes, stub headers) and what ran for real, and
+  why;
 - the **defects** found (ignored test + characterization), or that you found none;
 - if only **one configuration** was tested (Kconfig/`sdkconfig`/`#ifdef`), which one, and
   that branches of other configurations were not exercised.

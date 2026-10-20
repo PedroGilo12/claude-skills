@@ -6,8 +6,17 @@ writing the ztest suite, scaffolding a new test project and running with coverag
 
 ## Dependency isolation — FFF by default
 
-Use **FFF (Fake Functions Framework)** as the default to isolate HAL, drivers and kernel.
-FFF generates fakes of C functions with call history and programmable return values.
+Use **FFF (Fake Functions Framework)** as the default to isolate HAL, drivers, other
+modules and kernel services. FFF generates fakes of C functions with call history and
+programmable return values.
+
+- **Kernel primitives may run for real** on `native_sim` when they are deterministic there
+  and no test needs to control them (`k_spinlock`, `k_lifo`/`k_fifo`, `k_heap`, `sys_*`
+  lists). A suite with zero fakes is fine for such a module, but **say so** in the final
+  output ("no fakes: only kernel primitives, run for real").
+- **Fake them anyway** when a partition needs their failure or timing: allocation failure
+  (`k_heap_alloc`/`k_malloc` returning NULL), `K_NO_WAIT` timeouts, `k_uptime_get`. Use FFF
+  with `-Wl,--wrap=<sym>` or a fake defined in the suite, not a hand-rolled global flag.
 
 - **Exception:** if the project already consistently uses another mocking mechanism (its
   own wrapper, CMock etc.), follow the project's.
@@ -171,6 +180,12 @@ west twister --coverage -p $PLAT -T <suite_path> \
 # fallback if `west` still does not resolve, but the Zephyr tree exists:
 python3 "$ZEPHYR_BASE/scripts/twister" --coverage -p $PLAT -T <suite_path> \
      --coverage-basedir <root_of_module_under_test>
+
+# 5) raw branch number (twister only reports it WITHOUT LOG_*/__ASSERT* branches). Same
+#    .gcda files, no exclusion. The output dir goes BEFORE the options (`--txt` would take it
+#    as its file name):
+gcovr -r <root_of_module_under_test> twister-out --filter '<path/to/module.c>' \
+      --txt-metric branch --txt > coverage-raw.txt 2>&1; tail -n 5 coverage-raw.txt
 ```
 
 Only report "execution could not run here" after exhausting this search (venv + ZEPHYR_BASE +
