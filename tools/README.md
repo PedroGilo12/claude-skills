@@ -8,6 +8,43 @@ Ferramentas do benchmark da `embedded-unit-testing`. Os alvos e as referências 
 | `fetch_targets.py` | Baixa os checkouts fixados (Zephyr, ESP-IDF) em `benchmarks/.targets/` |
 | `prepare_workspace.py <alvo> <dest>` | Monta o ambiente que a skill recebe num eval, **sem** a suíte humana |
 | `measure.py <alvo> ...` | Mede uma suíte: cobertura + mutação (mull), com veredito contra a referência |
+| `bench_run.py <eval> <config> <run> --iteration N` | Roda uma execução da skill com `claude -p` isolado |
+| `check_run.py <run_dir>` | Avalia por script as expectations mecânicas (sem LLM) |
+| `grade_qual.py <run_dir>` | Avalia com Sonnet (`claude -p`) só as expectations que o script não decidiu |
+| `bench_grade.py <run_dir>` | Junta medição, script e LLM no `grading.json` |
+| `summarize.py <N>` | Gera o `summary.md` da iteração |
+
+## Fluxo de iteração sem skill-creator
+
+Uma execução de cada vez, nesta ordem. A sessão interativa lê **só** o `summary.md`; abrir um
+transcript é exceção, quando o resumo aponta um problema.
+
+```bash
+python3 tools/bench_run.py 102 with_skill 1 --iteration 5     # execução da skill (a parte cara)
+R=plugins/firmware-testing/skills/embedded-unit-testing-workspace/iteration-5/eval-102-espidf-log/with_skill/run-1
+python3 tools/measure.py log --root <ws>/esp-idf --suite <suíte> --cmd '<build+run da skill>' \
+    --label iter5-102-espidf-log-run1                            # o <ws> está em $R/run.json
+cp benchmarks/results/log-iter5-102-espidf-log-run1.json $R/measure.json
+python3 tools/check_run.py $R          # grading-auto.json: true/false decididos, null vai para o LLM
+python3 tools/grade_qual.py $R         # grading-qual.json + grading-cost.json (~75 mil tokens)
+python3 tools/bench_grade.py $R        # grading.json, com source: measured | auto | llm
+python3 tools/summarize.py 5           # iteration-5/summary.md
+```
+
+O `check_run.py` roda **depois** do `measure.py`: na Path B ele executa de novo os binários
+de teste para medir o tempo de parede (limite de 1 s por teste da skill). Na Path A, lê o
+`execution_time` do `twister.json` mais recente.
+
+Arquivos de uma `run_dir`:
+
+| Arquivo | Quem gera | Conteúdo |
+|---|---|---|
+| `transcript.jsonl`, `timing.json`, `run.json`, `changed.json`, `skill.json` | `bench_run.py` | eventos, custo, mensagem final, arquivos alterados, versão da skill |
+| `measure.json` | `measure.py` (cópia do resultado) | cobertura, mutação, veredito |
+| `grading-auto.json` | `check_run.py` | notas do script, `suite_dir`, fatos (duração, seam) |
+| `transcript.md` | `condense_transcript.py` (chamado pelo `grade_qual.py`) | transcript condensado |
+| `grading-qual.json`, `grading-cost.json` | `grade_qual.py` | notas do LLM e custo do grader |
+| `grading.json` | `bench_grade.py` | as três fontes juntas |
 
 ## Fluxo de um eval
 
