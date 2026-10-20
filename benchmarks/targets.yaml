@@ -74,7 +74,7 @@ targets:
       lib/utils/onoff.c: {killed: 185, survived: 15, equivalent: 2, score: 92.5}
 
   log:
-    set: validation
+    set: dev                    # era validation; virou dev na 0.3.3 (as regras de teste lento e de comprimento saíram dele)
     path: B
     kind: host
     checkout: esp-idf

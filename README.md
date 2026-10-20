@@ -86,10 +86,13 @@ the target (`benchmarks/targets.yaml`).
 | `net_buf` (Zephyr) | v4.2.1 | `lib/net_buf/buf.c`, `lib/net_buf/buf_simple.c` | `tests/lib/net_buf`: 67 ztest cases |
 | `esp_partition` (ESP-IDF) | v5.4.2 | `components/esp_partition/partition.c` | `host_test/partition_api_test`: 19 Unity cases |
 | `onoff` (Zephyr), validation | v4.2.1 | `lib/utils/onoff.c` | `tests/lib/onoff` |
-| `log` (ESP-IDF), validation | v5.4.2 | 5 files under `components/log/src/` | `host_test/log_test` (Catch2) |
+| `log` (ESP-IDF), development since 0.3.3 | v5.4.2 | 5 files under `components/log/src/` | `host_test/log_test` (Catch2) |
 
-The skill was iterated on the first two targets only. The validation targets were never used
-while writing it, so they show whether it overfits.
+Up to 0.3.2 the skill was iterated on `net_buf` and `esp_partition` only. The validation
+targets were never used while writing it, so they show whether it overfits. `log` was a
+validation target in iteration 4. Its results drove the 0.3.3 rules (slow tests, input
+length), so it is now a development target and no longer counts as validation. Its
+iteration-4 numbers below are still valid results for 0.3.2.
 
 ### Results
 
