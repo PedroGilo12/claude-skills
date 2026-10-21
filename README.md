@@ -87,6 +87,7 @@ the target (`benchmarks/targets.yaml`).
 | `esp_partition` (ESP-IDF) | v5.4.2 | `components/esp_partition/partition.c` | `host_test/partition_api_test`: 19 Unity cases |
 | `onoff` (Zephyr), validation | v4.2.1 | `lib/utils/onoff.c` | `tests/lib/onoff` |
 | `log` (ESP-IDF), development since 0.3.3 | v5.4.2 | 5 files under `components/log/src/` | `host_test/log_test` (Catch2) |
+| `zbus` (Zephyr), validation since 0.3.4 | v4.2.1 | `subsys/zbus/zbus.c`, `subsys/zbus/zbus_runtime_observers.c` | 8 suites under `tests/subsys/zbus` (all but `integration`), every config variant |
 
 Up to 0.3.2 the skill was iterated on `net_buf` and `esp_partition` only. The validation
 targets were never used while writing it, so they show whether it overfits. `log` was a
@@ -186,6 +187,43 @@ must appear before the first file write, not only in the final output.
   `log_binary_heap.c` gets no mutants at all and the measurement is refused.
 - Every file beats its human reference on every metric. Two files miss the 80% mutation floor.
 
+#### Validation (v0.3.4, iteration 6): `zbus`
+
+3 runs (US$ 3.35–3.45, ~12 min each). Runs 1 and 2 fail acceptance, run 3 passes. A first
+run 3 was cut by the account usage limit after 8 min (US$ 2.08, kept as `run-3-cut`, not graded)
+and was redone from scratch.
+
+| File | Metric | Human reference | 0.3.4 run 1 | 0.3.4 run 2 | 0.3.4 run 3 |
+|---|---|---|---|---|---|
+| `zbus.c` | line / branch / function | 99.6 / 95.1 / 100% | 99.2 ❌ / 96.2 / 100% | 100 / 96.7 / 100% | 100 / 98.6 / 100% |
+| `zbus.c` | **mutation** | **78.0%** | **84.7%** | **89.8%** | **91.5%** |
+| `zbus_runtime_observers.c` | line / branch / function | 98.6 / 95.2 / 100% | 98.7 / 96.9 / 100% | 98.7 / 98.4 / 100% | 100 / 96.8 / 100% |
+| `zbus_runtime_observers.c` | **mutation** | **91.2%** | **89.2%** ❌ | **89.2%** ❌ | **91.9%** |
+| Qualitative grade | | — | 19/25 | 22/25 | 23/25 |
+
+- Denominators differ because each suite builds a different Kconfig set: the reference runs
+  the union of its variants (including priority boost off), and the skill runs 3
+  node-allocation scenarios, all with `ZBUS_ASSERT_MOCK`.
+- **Shared gap:** all 3 runs miss the mutant that removes `k_free(node)` when a runtime
+  observer is removed (`zbus_runtime_observers.c:30`). No test notices the leaked node; the
+  reference does. Run 3 still passes because it kills the node-allocation timeout mutant
+  (`:143`) that survives in the reference.
+- **Run 1 line gap:** it called the `default:` of the observer-type switch unreachable
+  through the API. The reference reaches it with a hand-built observer of invalid type.
+- **Where the skill beats the reference:** priority-boost restore, the boost boundary, and the
+  message-length mutants (`zbus.c:172`, `:529`, `:531`; run 1 used a long message sized to the
+  static buffer). The slow-test rule held without a seam: every wait uses `K_NO_WAIT` or a
+  claimed channel, and the slowest test takes 0.06 s.
+- **Real defect in `zbus.c:371`:** a thread publishing at `ZBUS_MIN_THREAD_PRIORITY` keeps
+  its boosted priority, because `chan_unlock` restores only priorities below that value. Runs
+  1 and 3 found and documented it (`BUG:` test plus a characterization test). Run 2 fixed the
+  publisher at priority 10 and missed it. The human suite never publishes from that
+  priority. All 3 runs also reported `-EFAULT` returned where the docs promise `-EINVAL` or
+  `-ENOMEM`. Runs 2 and 3 reported a macro in `zbus.h` that tests
+  `ZBUS_MSG_SUBSCRIBER_NET_BUF_POOL_ISOLATION` without the `CONFIG_` prefix. These are not
+  verified here.
+- Reference survivors were reviewed; 4 are proven equivalent (`benchmarks/equivalent-mutants.yaml`).
+
 #### Development (v0.3.3, iteration 5): `log`
 
 2 runs, both pass acceptance. Coverage is 100% line / branch / function on all 5 files.
@@ -261,6 +299,14 @@ must appear before the first file write, not only in the final output.
 - **Fixed in 0.3.3.** Slow boundary tests: the skill no longer keeps a test that loops ~2^29
   times to reach a counter overflow. It keeps each test under 1 s and uses a state seam only
   after the public API and the build configuration can't reach the state.
+- **Open in 0.3.4** (`zbus` validation, iteration 6). Per the validation rules these stay
+  limitations and do not drive skill changes:
+  - **Leaks go unnoticed.** No run (0/3) detects a node that is not freed on removal.
+  - **"Unreachable" without proof.** Run 1 declared reachable code unreachable.
+  - **Boundaries on the caller's side.** Run 2 partitioned observer priorities but not the
+    publisher's own priority, which is where the `zbus.c:371` defect lives.
+  - The path label (3/3 runs late) and `Covers:` precision (run 1) repeat the 0.3.3 gaps.
+    Run 3 also left out the raw / without-log-assert branch line of the final output.
 - **Open in 0.3.3** (iteration 5):
   - **Path label too late.** All 3 runs state `Path A`/`Path B` only in the final output,
     not before the first file write.

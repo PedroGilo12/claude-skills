@@ -70,3 +70,25 @@ log:
     (count == TAG_CACHE_SIZE), quando todos os slots foram escritos depois do último clean com
     gerações tiradas de s_log_cache_max_generation++ (únicas, < MAX_GENERATION); o
     fix_cache_generation_overflow renumera com 0..count-1 e retoma em count, também únicas.
+
+# Revisão dos 33 sobreviventes da referência (2026-10-20). Os 29 restantes têm efeito
+# observável (caminhos de ISR, restauração de prioridade, -ENOMEM, retorno das funções de
+# máscara, buffers do msg subscriber, limites de varredura) ou só aparecem no log, como o
+# LOG_WRN de IDs duplicados (zbus.c:81-89) e o índice do LOG_DBG (zbus.c:184), que o mull
+# não vê. Fora por dúvida: zbus.c:325/342 (`boosting` false/true -> 42). O resultado depende
+# de como o 42 vira bool no IR (trunc para i1 dá false).
+zbus:
+  eed34e5bcb: >-
+    zbus.c:159 (_zbus_vded_exec) `int err = 0` -> 42. Store morto: err só é lido depois das
+    atribuições nas linhas 199 e 227. [código sem efeito]
+  b0c8eae0e2: >-
+    zbus.c:264 (chan_update_hop) `chan_highest_observer_priority > obs->data->priority` ->
+    `>=`. Na igualdade o mutante atribui o mesmo valor; o mínimo calculado não muda.
+  0bfbae873e: >-
+    zbus.c:396 (zbus_chan_pub) `context_priority = ZBUS_MIN_THREAD_PRIORITY` -> 42. Com
+    PRIORITY_BOOST fora de ISR, chan_lock sobrescreve antes de ler. Nos outros casos, só
+    chan_unlock lê (`prio < ZBUS_MIN_THREAD_PRIORITY`), e isso é falso para 14 e para 42.
+    Vale com CONFIG_NUM_PREEMPT_PRIORITIES <= 43 (padrão 15). [código sem efeito]
+  d5e06e22be: >-
+    zbus.c:454 (zbus_chan_notify) `context_priority = ZBUS_MIN_THREAD_PRIORITY` -> 42. Mesmo
+    argumento da linha 396. [código sem efeito]

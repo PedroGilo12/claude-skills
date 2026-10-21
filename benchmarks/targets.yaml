@@ -73,6 +73,35 @@ targets:
     baseline_mutation:           # mull 0.34.1, cxx_all (benchmarks/results/onoff-ref.json)
       lib/utils/onoff.c: {killed: 185, survived: 15, equivalent: 2, score: 92.5}
 
+  zbus:
+    set: validation
+    path: A
+    kind: zephyr
+    checkout: zephyr
+    sources:
+      - subsys/zbus/zbus.c
+      - subsys/zbus/zbus_runtime_observers.c
+    hidden:
+      - tests/subsys/zbus
+      - samples/subsys/zbus
+    # Todas as suítes menos integration (teste entre módulos); twister roda todos os cenários
+    # de cada testcase.yaml, então a referência é a união das variantes de configuração.
+    baseline_suite:
+      - tests/subsys/zbus/unittests
+      - tests/subsys/zbus/channel_id
+      - tests/subsys/zbus/dyn_channel
+      - tests/subsys/zbus/user_data
+      - tests/subsys/zbus/publish_stats
+      - tests/subsys/zbus/runtime_observers_registration
+      - tests/subsys/zbus/runtime_observers_registration_alloc_none
+      - tests/subsys/zbus/hlp_priority_boost
+    baseline_coverage:           # 2026-10-20 (linha / branch / função)
+      subsys/zbus/zbus.c:                   {line: 260/261, branch: 194/204, function: 22/22}
+      subsys/zbus/zbus_runtime_observers.c: {line: 71/72, branch: 59/62, function: 6/6}
+    baseline_mutation:           # mull 0.34.1, cxx_all (benchmarks/results/zbus-ref.json)
+      subsys/zbus/zbus.c:                   {killed: 92, survived: 26, equivalent: 4, score: 78.0}
+      subsys/zbus/zbus_runtime_observers.c: {killed: 31, survived: 3, equivalent: 0, score: 91.2}
+
   log:
     set: dev                    # era validation; virou dev na 0.3.3 (as regras de teste lento e de comprimento saíram dele)
     path: B

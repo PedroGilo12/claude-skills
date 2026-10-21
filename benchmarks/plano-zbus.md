@@ -79,17 +79,21 @@ Suítes em `tests/subsys/zbus/`:
 - `hlp_priority_boost`;
 - `integration`.
 
-Decisões a tomar **antes** de medir. Num alvo de validação, decidir depois de ver o resultado
-vicia a comparação:
-- **`integration` entra na referência?** Ela é de integração entre módulos, enquanto a skill
-  só gera testes unitários. Proposta: deixar fora da referência, mas em `hidden`.
-- **Quais variantes de configuração** (`extra_configs` dos `testcase.yaml`) entram. A skill
-  testa uma configuração por padrão, e a referência humana cobre várias. Uma opção é comparar
-  por variante, outra é comparar a união.
+Decisões tomadas em 2026-10-20, **antes** de medir (num alvo de validação, decidir depois
+de ver o resultado vicia a comparação):
+- **Versão validada:** 0.3.4. A iteração 5 (`log` e `net_buf`) conta como aprovação da 0.3.3;
+  a 0.3.4 só acrescenta o `tests.html`. O `esp_partition` não rodou na iteração 5.
+- **Escopo:** `zbus.c` e `zbus_runtime_observers.c` (819 linhas). `zbus_iterable_sections.c`
+  fica fora: é trivial e só diluiria as métricas.
+- **`integration` fica fora da referência**, mas em `hidden`: é teste entre módulos, e a
+  skill só gera unitário.
+- **Variantes:** a referência é a **união**. O `measure.py` roda `twister -T <suíte>` em
+  `native_sim`, então todos os cenários de cada `testcase.yaml` entram (com e sem
+  `PRIORITY_BOOST`, observers dinâmico, estático e none). O cenário `linker_generator`
+  (`platform_allow: qemu_cortex_m3`) fica fora sozinho.
 - **Critério de aceite** igual ao dos outros alvos (cobertura e mutação ≥ referência, mutação
   ≥ 80%), sem ajuste específico para o `zbus`.
-- `hidden`: `tests/subsys/zbus` inteiro, e `samples/subsys/zbus` também, se os samples
-  revelarem demais a forma de usar a API.
+- `hidden`: `tests/subsys/zbus` e `samples/subsys/zbus` inteiros.
 
 ## Passos
 
