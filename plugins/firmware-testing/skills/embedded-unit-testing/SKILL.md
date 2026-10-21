@@ -48,8 +48,10 @@ brittle suite.
   where you cannot identify any unit test framework (Phase 0); (b) every 2 coverage
   iterations without hitting the target (Phase 8).
 - **No report written by you.** You do **not** write a results report. Run the tools and
-  **point to the artifacts they generate** (coverage HTML, runner output). The "result" is
-  what the tool emits, not your prose.
+  **point to the artifacts they generate** (coverage HTML, runner output, `tests.html`). The
+  "result" is what the tool emits, not your prose. `tests.html` comes from the bundled
+  `scripts/test_report.py`, a tool like gcovr. Copying it into the suite directory is part
+  of the scaffold, not a change to the target files.
 - **Coverage target:** function ≥ 95%, line ≥ 95%, branch ≥ 90% (**95/95/90**) by default.
   Once the target is met, stop iterating and list the remaining uncovered lines/branches.
   Go for 100/100/100 only if the user asks for it. Below the target only when what is
@@ -226,8 +228,9 @@ failure), **do not leave the suite red** and do not use `ZTEST_EXPECT_FAIL`. Wri
 tests:
 
 1. **Documented behavior, ignored with a reason** — the assert of what the docs promise,
-   skipped with the reason: `ztest_test_skip()` (Path A) or `TEST_IGNORE_MESSAGE("BUG: ...")`
-   (Path B). Comment above: `/* Covers: Pn — BUG: <docs say X; code does Y> */`.
+   skipped with the reason: `TC_PRINT("BUG: ...\n"); ztest_test_skip();` (Path A) or
+   `TEST_IGNORE_MESSAGE("BUG: ...")` (Path B). The `BUG:` prefix is what makes the test
+   report list it as a known bug. Comment above: `/* Covers: Pn — BUG: <docs say X; code does Y> */`.
 2. **Characterization** — pins the **current** behavior, so that any change (including the
    fix) shows up. Comment: `/* Covers: Pn — characterization of the BUG above */`.
 
@@ -272,6 +275,15 @@ Run the path's tool and **point to the artifacts it generates** (do not write a 
   `gcov`/`gcovr` over the test build). Keep and point to the emitted artifacts.
 
 Details and troubleshooting in each path's file.
+
+**Test report: `tests.html`, every path.** Copy `scripts/test_report.py` (from this skill)
+into the suite directory and wire it so that **the command that runs the suite also writes
+`tests.html`**. It lists every test as passed, failed, crashed, ignored or known bug. Write
+it even when tests fail: run every binary, write the report, then return the runner's exit
+code. The script reads Unity logs, ztest `handler.log` files and JUnit XML. The wiring for
+each path is in its path file. Path B: the Makefile's `run` target, so `make` and
+`make coverage` both produce it. Path A: the command after twister. Path C: the project's
+test target.
 
 **Slow tests: 1 s per test, in the normal host build.** After each run, read the per-test
 durations from the runner (ztest/twister print them; Catch2 `--durations yes`; Unity
@@ -339,6 +351,8 @@ said earlier:
 - **Isolation:** what was faked/stubbed (FFF fakes, stub headers) and what ran for real, and
   why; any state seam (variable, value, and the test that exceeded 1 s without it) and any
   brute-force test kept over 1 s; or "no seam, no test over 1 s";
+- **Test report:** the `tests.html` path and the counts from the `report: …` line the script
+  printed (e.g. `build/tests.html` (0 failed · 0 crashed · 2 known bug · 0 ignored · 41 passed));
 - the **defects** found (ignored test + characterization), or that you found none;
 - if only **one configuration** was tested (Kconfig/`sdkconfig`/`#ifdef`), which one, and
   that branches of other configurations were not exercised.
@@ -353,5 +367,7 @@ said earlier:
   stubs, gcov/gcovr and gotchas. Read when entering Path B.
 - `references/non-zephyr-path.md` — Path C: detect and follow the existing framework (or
   stop and ask if there is none), its runner and coverage. Read when entering Path C.
+- `scripts/test_report.py` — writes `tests.html` from Unity logs, ztest `handler.log` or
+  JUnit XML. Copy it into every suite (Phase 7).
 - `assets/zephyr-scaffold/` — templates for `CMakeLists.txt`, `prj.conf` and `testcase.yaml`
   for a new `native_sim` suite with the fakes linked in.

@@ -98,13 +98,16 @@ the rejected call.
 ### Defect found (code diverges from docs) — ztest syntax
 
 Documented behavior skipped with the reason, plus a characterization test pinning the
-current behavior. The suite stays green and the skip shows up in every twister run:
+current behavior. The suite stays green and the skip shows up in every twister run.
+`ztest_test_skip()` takes no message, so print the reason first with a `BUG:` prefix. The test
+report reads it from `handler.log` and lists the test as a known bug:
 
 ```c
 /* Covers: P5 — BUG: header says speed 0 is rejected with -EINVAL; code returns 0 */
 ZTEST(motor_ctrl_suite, test_set_speed_zero_is_rejected)
 {
-    ztest_test_skip(); /* BUG: documented -EINVAL, current 0 (see characterization) */
+    TC_PRINT("BUG: documented -EINVAL, current 0\n");
+    ztest_test_skip();
     zassert_equal(motor_ctrl_set_speed(0), -EINVAL);
 }
 
@@ -188,6 +191,11 @@ python3 "$ZEPHYR_BASE/scripts/twister" --coverage -p $PLAT -T <suite_path> \
 #    as its file name):
 gcovr -r <root_of_module_under_test> twister-out --filter '<path/to/module.c>' \
       --txt-metric branch --txt > coverage-raw.txt 2>&1; tail -n 5 coverage-raw.txt
+
+# 6) test report (copy the skill's scripts/test_report.py into <suite_path> first). Twister
+#    has no post-run hook, so this line is the command the suite delivers; it is also in the
+#    comment at the top of the suite's CMakeLists.txt:
+python3 <suite_path>/test_report.py twister-out/tests.html $(find twister-out -name handler.log)
 ```
 
 Only report "execution could not run here" after exhausting this search (venv + ZEPHYR_BASE +
@@ -199,6 +207,7 @@ is the default output directory; if you passed `-O <dir>`, they are under `<dir>
 - `twister-out/coverage/index.html` — browsable HTML coverage report
 - `twister-out/coverage.json` — coverage in JSON
 - `twister-out/twister.xml` and `twister-out/twister.json` — test results
+- `twister-out/tests.html` — test report from step 6 (passed / failed / known bugs)
 
 Reading the numbers for Phase 8: open `coverage.json` (or `index.html`) and compare
 function/line/branch of the **unit under test** against the 95/95/90 target. Uncovered lines/branches point to the gaps to attack, together with the

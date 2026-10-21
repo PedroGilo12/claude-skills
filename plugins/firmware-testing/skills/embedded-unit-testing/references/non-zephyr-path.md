@@ -83,5 +83,17 @@ Use the project's own runner + coverage and **point to the artifacts it generate
 - **GoogleTest + gcov/llvm-cov:** run via CTest, generate coverage with `gcovr`/`llvm-cov`
   and point to the report.
 
-Compare function/line/branch of the unit under test against the 95/95/90 target to feed Phase 8. Do not write a report of your own — the tool's artifact is
-the output.
+Then the **test report**. Copy the skill's `scripts/test_report.py` next to the suite and call
+it from the same target that runs the tests, after the runner and whatever the result:
+- **Unity runner binaries (Make/CMake):** each binary's output goes to `build/<t>.log`, then
+  `python3 test_report.py build/tests.html build/*.log`. This is the Path B `run` recipe in
+  `espidf-path.md`.
+- **CTest / GoogleTest:** `ctest --output-junit junit.xml` (or `--gtest_output=xml:build/`),
+  then `python3 test_report.py build/tests.html <xml files>`, e.g. in a CMake
+  `add_custom_target(test_report ...)`.
+- **Ceedling:** enable the `junit_tests_report` plugin in `project.yml` and pass its XML
+  (`build/artifacts/test/junit_tests_report.xml`).
+If the runner cannot be hooked, give the one-line report command next to the runner command.
+
+Compare function/line/branch of the unit under test against the 95/95/90 target to feed
+Phase 8. Do not write a report of your own: the tools' artifacts are the output.

@@ -6,6 +6,10 @@
 #  - The fakes (FFF) are defined inside the suite itself; they only need a separate .c
 #    if they are shared between suites.
 #  - target_include_directories must reach the module's .h and its project headers.
+#
+# Run (from the twister working dir), then write the test report:
+#   west twister --coverage -p native_sim/native/64 -T <suite_path> --coverage-basedir <module_root>
+#   python3 <suite_path>/test_report.py twister-out/tests.html $(find twister-out -name handler.log)
 
 cmake_minimum_required(VERSION 3.20.0)
 

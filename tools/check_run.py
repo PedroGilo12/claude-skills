@@ -347,6 +347,18 @@ def chk_unity_host(c):
     return True, "Unity (unity.h) em build de host, sem pausa para perguntar"
 
 
+def chk_test_report(c):
+    html = [p for p in c.created if p.endswith("tests.html")]
+    script = [p for p in c.created if p.endswith("test_report.py") and c.suite and p.startswith(c.suite + "/")]
+    if not script:
+        return False, f"test_report.py não foi copiado para a suíte ({c.suite})"
+    if not html:
+        return False, "tests.html não foi gerado"
+    if "tests.html" not in c.final:
+        return False, "a mensagem final não aponta tests.html"
+    return True, f"{script[0]}; {html[-1]}"
+
+
 def chk_twister_cov(c):
     cmds = [cmd for cmd, _ in c.bash if "twister" in cmd and "--coverage" in cmd]
     html = [p for p in c.created if p.endswith("coverage/index.html")]
@@ -450,6 +462,7 @@ CHECKS = [  # trecho da expectation -> verificação
     ("says which venv", chk_env_line),
     ("Actually EXECUTES the suite", chk_executed),
     ("Actually runs coverage and points", chk_artifacts),
+    ("Wires the bundled test_report.py", chk_test_report),
     ("Reports both branch metrics", chk_branch_line),
     ("is in English", chk_english),
     ("new ztest API", chk_ztest_api),

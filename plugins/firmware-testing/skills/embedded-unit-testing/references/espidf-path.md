@@ -110,22 +110,51 @@ void test_motor_ctrl_set_speed_zero_current_behavior(void)
 ## Execution + coverage (Phase 7)
 
 Activate the environment first (the repo venv if any; `. $IDF_PATH/export.sh` for the IDF
-flow). For the self-contained host build:
+flow). For the self-contained host build, use a `Makefile` in the suite directory, next to
+a copy of the skill's `scripts/test_report.py`. `run` runs every binary into `build/<t>.log`
+and writes the test report, even when a test fails. `coverage` depends on `run`, so it writes the report too:
 
-```sh
-gcc -std=c11 --coverage -DUNITY_INCLUDE_DOUBLE \
-    -I<module inc> -Istubs -Ivendor/unity \
-    <module>.c test_<module>.c vendor/unity/unity.c -o test_<module> && ./test_<module>
+```make
+IDF_PATH ?= $(HOME)/esp/esp-idf
+UNITY    := $(IDF_PATH)/components/unity/unity/src
+SRC      := $(abspath <module dir>)
+B        := build
+CFLAGS   := -std=gnu11 -O0 -g -Wall -Wextra --coverage -DUNITY_INCLUDE_DOUBLE \
+            -DUNITY_INCLUDE_EXEC_TIME -Istubs -I$(SRC) -I$(UNITY)
+TESTS    := test_<module>
+
+$(B):
+	mkdir -p $(B)
+
+$(B)/test_<module>: test_<module>.c $(SRC)/<module>.c | $(B)
+	$(CC) $(CFLAGS) $(abspath $^) $(UNITY)/unity.c -o $@
+
+run: $(addprefix $(B)/,$(TESTS))
+	rm -f $(B)/*.gcda
+	@rc=0; for t in $(TESTS); do \
+	    ./$(B)/$$t > $(B)/$$t.log 2>&1 || rc=1; cat $(B)/$$t.log; \
+	done; \
+	python3 test_report.py $(B)/tests.html $(addprefix $(B)/,$(addsuffix .log,$(TESTS))); \
+	exit $$rc
+
+GCOVR    := gcovr -r $(SRC) --object-directory $(B) --filter '$(SRC)/<module>\.c'
+LOG_EXCL := --exclude-branches-by-pattern '(^\s*ESP_LOG[EWIDV]\(.*)|(^\s*assert\(.*)'
+
 # raw branch number, then the one compared against the target (log/assert branches out):
-gcovr -r . --filter '<module>.c' --txt-metric branch --txt
-gcovr -r . --filter '<module>.c' --exclude-branches-by-pattern '(^\s*ESP_LOG[EWIDV]\(.*)|(^\s*assert\(.*)' \
-      --txt-metric branch --txt --html-details -o coverage.html    # or --xml for CI
+coverage: run
+	$(GCOVR) --txt-metric branch --txt
+	$(GCOVR) $(LOG_EXCL) --txt-metric branch --txt --html-details $(B)/coverage.html --xml $(B)/coverage.xml
+
+.PHONY: run coverage
 ```
 
-Report both numbers. The second one is what counts against the target.
+One binary per configuration (`-DCONFIG_...`) or per isolated scenario: add it to `TESTS`.
+Dependencies replaced with `-Wl,--wrap=<sym>` go on that binary's link line.
 
-Point to the artifacts the tool generates (`coverage.html`/`.xml`, the Unity runner output)
-— do not write a report of your own.
+Report both branch numbers. The second one is what counts against the target.
+
+Point to the artifacts the tools generate (`build/coverage.html`/`.xml`, `build/tests.html`,
+the Unity runner output). Do not write a report of your own.
 
 **Known gotchas:**
 - Unity's `double` assertions are off by default → compile with `-DUNITY_INCLUDE_DOUBLE`

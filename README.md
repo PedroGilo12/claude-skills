@@ -102,6 +102,8 @@ iteration-4 numbers below are still valid results for 0.3.2.
 - **0.3.2** fixes the final-output gaps and was run on the validation targets (iteration 4).
 - **0.3.3** adds the slow-test rule (1 s per test, state seam as last resort) and the
   input-length partition. Iteration 5: 2 runs on `log`, 1 on `net_buf`.
+- **0.3.4** ships `scripts/test_report.py`: every suite's run command also writes
+  `tests.html` (passed / failed / crashed / known bugs). Not benchmarked yet.
 
 The "Without skill" column is Claude with the same prompt and no skill.
 
